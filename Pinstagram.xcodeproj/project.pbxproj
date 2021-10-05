@@ -11,6 +11,8 @@
 		48560CEA2709C4F0007543D9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48560CE92709C4F0007543D9 /* ContentView.swift */; };
 		48560CEC2709C4F1007543D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48560CEB2709C4F1007543D9 /* Assets.xcassets */; };
 		48560CEF2709C4F1007543D9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48560CEE2709C4F1007543D9 /* Preview Assets.xcassets */; };
+		48E66774270CBF5200735A1C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E66773270CBF5200735A1C /* LoginView.swift */; };
+		48E66776270CC47500735A1C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E66775270CC47500735A1C /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		48560CEB2709C4F1007543D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48560CEE2709C4F1007543D9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		48560CF02709C4F1007543D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48E66773270CBF5200735A1C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		48E66775270CC47500735A1C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +56,10 @@
 		48560CE62709C4F0007543D9 /* Pinstagram */ = {
 			isa = PBXGroup;
 			children = (
+				48560CF62709C571007543D9 /* Model */,
+				48560CF72709C576007543D9 /* View */,
+				48560CF82709C57D007543D9 /* ViewModel */,
 				48560CE72709C4F0007543D9 /* PinstagramApp.swift */,
-				48560CE92709C4F0007543D9 /* ContentView.swift */,
 				48560CEB2709C4F1007543D9 /* Assets.xcassets */,
 				48560CF02709C4F1007543D9 /* Info.plist */,
 				48560CED2709C4F1007543D9 /* Preview Content */,
@@ -67,6 +73,46 @@
 				48560CEE2709C4F1007543D9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		48560CF62709C571007543D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		48560CF72709C576007543D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				48E66772270CBEF800735A1C /* Authentication */,
+				48560CF92709C5C9007543D9 /* Main */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		48560CF82709C57D007543D9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		48560CF92709C5C9007543D9 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				48560CE92709C4F0007543D9 /* ContentView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		48E66772270CBEF800735A1C /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				48E66773270CBF5200735A1C /* LoginView.swift */,
+				48E66775270CC47500735A1C /* CustomTextField.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +185,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				48560CEA2709C4F0007543D9 /* ContentView.swift in Sources */,
+				48E66774270CBF5200735A1C /* LoginView.swift in Sources */,
 				48560CE82709C4F0007543D9 /* PinstagramApp.swift in Sources */,
+				48E66776270CC47500735A1C /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
