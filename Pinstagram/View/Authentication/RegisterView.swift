@@ -1,15 +1,16 @@
 //
-//  LoginView.swift
+//  RegisterView.swift
 //  Pinstagram
 //
-//  Created by Robert Pelka on 05/10/2021.
+//  Created by Robert Pelka on 07/10/2021.
 //
 
 import SwiftUI
 
-struct LoginView: View {
+struct RegisterView: View {
     @State private var email = ""
     @State private var password = ""
+    @State private var username = ""
     
     var body: some View {
         ZStack {
@@ -20,6 +21,15 @@ struct LoginView: View {
                 Image("logo")
                     .padding()
                 
+                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                    VStack {
+                        Image("addPictureCircle")
+                        Text("Add profile picture")
+                            .foregroundColor(.white)
+                    }
+                })
+                .padding(.bottom)
+                
                 CustomTextField(text: $email, placeholder: "Email", imageName: "envelope.fill", isSecure: false)
                     .padding(.horizontal)
                     .padding(.vertical, 5)
@@ -28,16 +38,12 @@ struct LoginView: View {
                     .padding(.horizontal)
                     .padding(.vertical, 5)
                 
-                HStack {
-                    Spacer()
-                    Text("Forgot password?")
-                        .foregroundColor(.white)
-                        .font(.system(size: 14, weight: .medium))
-                        .padding(.trailing)
-                }
+                CustomTextField(text: $username, placeholder: "Username", imageName: "person.fill", isSecure: false)
+                    .padding(.horizontal)
+                    .padding(.vertical, 5)
                 
                 Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                    Text("Log In")
+                    Text("Sign Up")
                         .font(.system(size: 18, weight: .semibold))
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity, minHeight: 38)
@@ -47,11 +53,11 @@ struct LoginView: View {
                         .padding(.top, 15)
                 })
                 
-                Text("Don't have an account?")
+                Text("Already have an account?")
                     .foregroundColor(.white)
                     .font(.system(size: 18, weight: .light))
                     +
-                    Text(" Join us.")
+                    Text(" Log in.")
                     .foregroundColor(.white)
                     .font(.system(size: 18, weight: .semibold))
             }
@@ -59,8 +65,9 @@ struct LoginView: View {
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
+struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        RegisterView()
+            
     }
 }
