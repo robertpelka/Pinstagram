@@ -10,9 +10,14 @@ import SwiftUI
 struct FeedView: View {
     var body: some View {
         NavigationView {
-            Text("Feed")
-                .navigationTitle("Feed")
-                .navigationBarTitleDisplayMode(.inline)
+            ScrollView {
+                ForEach(1..<11) { _ in
+                    FeedCell()
+                        .padding(.vertical, 14)
+                }
+            }
+            .navigationTitle("Feed")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
