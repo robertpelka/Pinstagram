@@ -31,9 +31,10 @@ struct FeedCell: View {
             
             Image("postImage")
                 .resizable()
-                .scaledToFit()
-                .frame(maxWidth: .infinity, maxHeight: 600)
+                .scaledToFill()
+                .frame(maxWidth: .infinity, maxHeight: 500)
                 .fixedSize(horizontal: false, vertical: true)
+                .clipped()
             
             HStack {
                 Image(systemName: "heart")

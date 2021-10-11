@@ -11,9 +11,11 @@ struct FeedView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                ForEach(1..<11) { _ in
-                    FeedCell()
-                        .padding(.vertical, 14)
+                LazyVStack {
+                    ForEach(1..<11) { _ in
+                        FeedCell()
+                            .padding(.vertical, 14)
+                    }
                 }
             }
             .navigationTitle("Feed")
