@@ -12,6 +12,8 @@
 		48560CEC2709C4F1007543D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48560CEB2709C4F1007543D9 /* Assets.xcassets */; };
 		48560CEF2709C4F1007543D9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48560CEE2709C4F1007543D9 /* Preview Assets.xcassets */; };
 		485733C02711ABE200B19A34 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485733BF2711ABE200B19A34 /* FeedCell.swift */; };
+		485733C32714364D00B19A34 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485733C22714364D00B19A34 /* SearchBar.swift */; };
+		485733C627144ADA00B19A34 /* PostGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485733C527144ADA00B19A34 /* PostGrid.swift */; };
 		488CCFFC270EFBCB00875594 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488CCFFB270EFBCB00875594 /* RegisterView.swift */; };
 		488CCFFE270F003C00875594 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488CCFFD270F003C00875594 /* ResetPasswordView.swift */; };
 		488CD000271185F300875594 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488CCFFF271185F300875594 /* MainTabView.swift */; };
@@ -32,6 +34,8 @@
 		48560CEE2709C4F1007543D9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		48560CF02709C4F1007543D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		485733BF2711ABE200B19A34 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		485733C22714364D00B19A34 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		485733C527144ADA00B19A34 /* PostGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGrid.swift; sourceTree = "<group>"; };
 		488CCFFB270EFBCB00875594 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		488CCFFD270F003C00875594 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		488CCFFF271185F300875594 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -106,10 +110,11 @@
 				48E66772270CBEF800735A1C /* Authentication */,
 				48560CF92709C5C9007543D9 /* Main */,
 				485733BE2711ABC200B19A34 /* Feed */,
-				488CD0032711893000875594 /* SearchView.swift */,
+				485733C12714359300B19A34 /* Search */,
 				488CD0052711894B00875594 /* NewPostView.swift */,
 				488CD0072711896800875594 /* NotificationsView.swift */,
 				488CD009271189BD00875594 /* ProfileView.swift */,
+				485733C4271448C200B19A34 /* Items */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -137,6 +142,23 @@
 				485733BF2711ABE200B19A34 /* FeedCell.swift */,
 			);
 			path = Feed;
+			sourceTree = "<group>";
+		};
+		485733C12714359300B19A34 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				488CD0032711893000875594 /* SearchView.swift */,
+				485733C22714364D00B19A34 /* SearchBar.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		485733C4271448C200B19A34 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				485733C527144ADA00B19A34 /* PostGrid.swift */,
+			);
+			path = Items;
 			sourceTree = "<group>";
 		};
 		48E66772270CBEF800735A1C /* Authentication */ = {
@@ -225,7 +247,9 @@
 				48560CEA2709C4F0007543D9 /* ContentView.swift in Sources */,
 				488CD0082711896800875594 /* NotificationsView.swift in Sources */,
 				488CD00A271189BD00875594 /* ProfileView.swift in Sources */,
+				485733C627144ADA00B19A34 /* PostGrid.swift in Sources */,
 				488CCFFC270EFBCB00875594 /* RegisterView.swift in Sources */,
+				485733C32714364D00B19A34 /* SearchBar.swift in Sources */,
 				48E66774270CBF5200735A1C /* LoginView.swift in Sources */,
 				488CCFFE270F003C00875594 /* ResetPasswordView.swift in Sources */,
 				488CD000271185F300875594 /* MainTabView.swift in Sources */,
