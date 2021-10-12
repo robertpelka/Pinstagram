@@ -111,7 +111,7 @@
 				48560CF92709C5C9007543D9 /* Main */,
 				485733BE2711ABC200B19A34 /* Feed */,
 				485733C12714359300B19A34 /* Search */,
-				488CD0052711894B00875594 /* NewPostView.swift */,
+				485733C72715AE6600B19A34 /* NewPost */,
 				488CD0072711896800875594 /* NotificationsView.swift */,
 				488CD009271189BD00875594 /* ProfileView.swift */,
 				485733C4271448C200B19A34 /* Items */,
@@ -159,6 +159,14 @@
 				485733C527144ADA00B19A34 /* PostGrid.swift */,
 			);
 			path = Items;
+			sourceTree = "<group>";
+		};
+		485733C72715AE6600B19A34 /* NewPost */ = {
+			isa = PBXGroup;
+			children = (
+				488CD0052711894B00875594 /* NewPostView.swift */,
+			);
+			path = NewPost;
 			sourceTree = "<group>";
 		};
 		48E66772270CBEF800735A1C /* Authentication */ = {
