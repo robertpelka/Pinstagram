@@ -27,7 +27,7 @@ struct SearchView: View {
                                         .frame(width: 48, height: 48)
                                         .clipShape(Circle())
                                         .padding(.leading, 10)
-                                        .padding(.trailing, 5)
+                                        .padding(.trailing, 2)
                                     
                                     Text("Andrew")
                                         .font(.system(size: 18, weight: .semibold))

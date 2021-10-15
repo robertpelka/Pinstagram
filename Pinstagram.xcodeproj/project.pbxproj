@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		480C1EC22719F30400905E18 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C1EC12719F30400905E18 /* NotificationCell.swift */; };
 		48560CE82709C4F0007543D9 /* PinstagramApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48560CE72709C4F0007543D9 /* PinstagramApp.swift */; };
 		48560CEA2709C4F0007543D9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48560CE92709C4F0007543D9 /* ContentView.swift */; };
 		48560CEC2709C4F1007543D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48560CEB2709C4F1007543D9 /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		480C1EC12719F30400905E18 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		48560CE42709C4F0007543D9 /* Pinstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pinstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48560CE72709C4F0007543D9 /* PinstagramApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinstagramApp.swift; sourceTree = "<group>"; };
 		48560CE92709C4F0007543D9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,6 +61,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		480C1EC3271A056C00905E18 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				488CD0072711896800875594 /* NotificationsView.swift */,
+				480C1EC12719F30400905E18 /* NotificationCell.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		48560CDB2709C4F0007543D9 = {
 			isa = PBXGroup;
 			children = (
@@ -112,7 +123,7 @@
 				485733BE2711ABC200B19A34 /* Feed */,
 				485733C12714359300B19A34 /* Search */,
 				485733C72715AE6600B19A34 /* NewPost */,
-				488CD0072711896800875594 /* NotificationsView.swift */,
+				480C1EC3271A056C00905E18 /* Notifications */,
 				488CD009271189BD00875594 /* ProfileView.swift */,
 				485733C4271448C200B19A34 /* Items */,
 			);
@@ -257,6 +268,7 @@
 				488CD00A271189BD00875594 /* ProfileView.swift in Sources */,
 				485733C627144ADA00B19A34 /* PostGrid.swift in Sources */,
 				488CCFFC270EFBCB00875594 /* RegisterView.swift in Sources */,
+				480C1EC22719F30400905E18 /* NotificationCell.swift in Sources */,
 				485733C32714364D00B19A34 /* SearchBar.swift in Sources */,
 				48E66774270CBF5200735A1C /* LoginView.swift in Sources */,
 				488CCFFE270F003C00875594 /* ResetPasswordView.swift in Sources */,
