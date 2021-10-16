@@ -118,8 +118,8 @@
 		48560CF72709C576007543D9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				48E66772270CBEF800735A1C /* Authentication */,
 				48560CF92709C5C9007543D9 /* Main */,
+				48E66772270CBEF800735A1C /* Authentication */,
 				485733BE2711ABC200B19A34 /* Feed */,
 				485733C12714359300B19A34 /* Search */,
 				485733C72715AE6600B19A34 /* NewPost */,
