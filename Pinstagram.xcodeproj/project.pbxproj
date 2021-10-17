@@ -15,6 +15,8 @@
 		485733C02711ABE200B19A34 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485733BF2711ABE200B19A34 /* FeedCell.swift */; };
 		485733C32714364D00B19A34 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485733C22714364D00B19A34 /* SearchBar.swift */; };
 		485733C627144ADA00B19A34 /* PostGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485733C527144ADA00B19A34 /* PostGrid.swift */; };
+		48892103271C29D3000F37D2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48892102271C29D3000F37D2 /* Utils.swift */; };
+		48892105271C3129000F37D2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48892104271C3129000F37D2 /* Constants.swift */; };
 		488CCFFC270EFBCB00875594 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488CCFFB270EFBCB00875594 /* RegisterView.swift */; };
 		488CCFFE270F003C00875594 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488CCFFD270F003C00875594 /* ResetPasswordView.swift */; };
 		488CD000271185F300875594 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488CCFFF271185F300875594 /* MainTabView.swift */; };
@@ -38,6 +40,8 @@
 		485733BF2711ABE200B19A34 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		485733C22714364D00B19A34 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		485733C527144ADA00B19A34 /* PostGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGrid.swift; sourceTree = "<group>"; };
+		48892102271C29D3000F37D2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		48892104271C3129000F37D2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		488CCFFB270EFBCB00875594 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		488CCFFD270F003C00875594 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		488CCFFF271185F300875594 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -92,6 +96,7 @@
 				48560CF62709C571007543D9 /* Model */,
 				48560CF72709C576007543D9 /* View */,
 				48560CF82709C57D007543D9 /* ViewModel */,
+				48892101271C296A000F37D2 /* Utils */,
 				48560CE72709C4F0007543D9 /* PinstagramApp.swift */,
 				48560CEB2709C4F1007543D9 /* Assets.xcassets */,
 				48560CF02709C4F1007543D9 /* Info.plist */,
@@ -178,6 +183,15 @@
 				488CD0052711894B00875594 /* NewPostView.swift */,
 			);
 			path = NewPost;
+			sourceTree = "<group>";
+		};
+		48892101271C296A000F37D2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				48892102271C29D3000F37D2 /* Utils.swift */,
+				48892104271C3129000F37D2 /* Constants.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		48E66772270CBEF800735A1C /* Authentication */ = {
@@ -269,6 +283,7 @@
 				485733C627144ADA00B19A34 /* PostGrid.swift in Sources */,
 				488CCFFC270EFBCB00875594 /* RegisterView.swift in Sources */,
 				480C1EC22719F30400905E18 /* NotificationCell.swift in Sources */,
+				48892103271C29D3000F37D2 /* Utils.swift in Sources */,
 				485733C32714364D00B19A34 /* SearchBar.swift in Sources */,
 				48E66774270CBF5200735A1C /* LoginView.swift in Sources */,
 				488CCFFE270F003C00875594 /* ResetPasswordView.swift in Sources */,
@@ -276,6 +291,7 @@
 				48560CE82709C4F0007543D9 /* PinstagramApp.swift in Sources */,
 				48E66776270CC47500735A1C /* CustomTextField.swift in Sources */,
 				488CD0062711894B00875594 /* NewPostView.swift in Sources */,
+				48892105271C3129000F37D2 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

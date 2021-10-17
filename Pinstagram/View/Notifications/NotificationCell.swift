@@ -24,6 +24,7 @@ struct NotificationCell: View {
         HStack {
             Image("profileImage")
                 .resizable()
+                .scaledToFill()
                 .clipShape(Circle())
                 .frame(width: 52, height: 52)
             
@@ -48,13 +49,14 @@ struct NotificationCell: View {
                         .font(.system(size: 18, weight: .semibold))
                         .foregroundColor(.white)
                         .frame(width: 99, height: 38)
-                        .background(Color(red: 43/255, green: 158/255, blue: 110/255))
+                        .background(K.Colors.primary)
                         .cornerRadius(5)
                 })
             }
             else {
                 Image("postImage")
                     .resizable()
+                    .scaledToFill()
                     .frame(width: 52, height: 52)
                     .clipped()
             }

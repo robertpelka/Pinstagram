@@ -32,7 +32,7 @@ struct SearchBar: View {
                 Button(action: {
                     isEditing = false
                     searchText = ""
-                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    self.hideKeyboard()
                 }, label: {
                     Text("Cancel")
                         .foregroundColor(.primary)
@@ -44,7 +44,6 @@ struct SearchBar: View {
         }
         .frame(height: 46)
         .padding(.horizontal, 10)
-        .padding(.top, 15)
     }
 }
 

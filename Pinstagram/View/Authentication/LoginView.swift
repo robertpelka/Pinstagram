@@ -13,7 +13,7 @@ struct LoginView: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color(red: 43/255, green: 158/255, blue: 110/255), Color(red: 158/255, green: 154/255, blue: 43/255), Color(red: 185/255, green: 77/255, blue: 16/255)]), startPoint: .top, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: [K.Colors.primary, Color(red: 158/255, green: 154/255, blue: 43/255), Color(red: 185/255, green: 77/255, blue: 16/255)]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             
             VStack {
@@ -41,7 +41,7 @@ struct LoginView: View {
                         .font(.system(size: 18, weight: .semibold))
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity, minHeight: 38)
-                        .background(Color(red: 43/255, green: 158/255, blue: 110/255))
+                        .background(K.Colors.primary)
                         .cornerRadius(5)
                         .padding()
                         .padding(.top, 15)
@@ -55,6 +55,9 @@ struct LoginView: View {
                     .foregroundColor(.white)
                     .font(.system(size: 18, weight: .semibold))
             }
+        }
+        .onTapGesture {
+            self.hideKeyboard()
         }
     }
 }

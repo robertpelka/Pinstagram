@@ -15,6 +15,7 @@ struct SearchView: View {
         NavigationView {
             VStack(alignment: .leading, spacing: 0) {
                 SearchBar(searchText: $searchText, isEditing: $isEditing)
+                    .padding(.vertical, 15)
                 
                 ScrollView {
                     if isEditing {
@@ -35,11 +36,9 @@ struct SearchView: View {
                                 }
                             }
                         }
-                        .padding(.top, 15)
                     }
                     else {
                         PostGrid()
-                            .padding(.top, 15)
                     }
                 }
             }

@@ -14,7 +14,6 @@ struct FeedView: View {
                 LazyVStack {
                     ForEach(1..<11) { _ in
                         FeedCell()
-                            .padding(.vertical, 14)
                     }
                 }
             }

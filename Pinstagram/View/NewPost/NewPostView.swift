@@ -45,7 +45,7 @@ struct NewPostView: View {
                         .font(.system(size: 18, weight: .semibold))
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity, minHeight: 38)
-                        .background(Color(red: 43/255, green: 158/255, blue: 110/255))
+                        .background(K.Colors.primary)
                         .cornerRadius(5)
                         .padding(.top)
                 })
@@ -55,6 +55,9 @@ struct NewPostView: View {
             .padding()
             .navigationTitle("New Post")
             .navigationBarTitleDisplayMode(.inline)
+        }
+        .onTapGesture {
+            self.hideKeyboard()
         }
     }
 }
