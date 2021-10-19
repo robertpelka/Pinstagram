@@ -15,6 +15,7 @@
 		485733C02711ABE200B19A34 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485733BF2711ABE200B19A34 /* FeedCell.swift */; };
 		485733C32714364D00B19A34 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485733C22714364D00B19A34 /* SearchBar.swift */; };
 		485733C627144ADA00B19A34 /* PostGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485733C527144ADA00B19A34 /* PostGrid.swift */; };
+		48864F09271F4B3B008E1EB2 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48864F08271F4B3B008E1EB2 /* EditProfileView.swift */; };
 		48892103271C29D3000F37D2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48892102271C29D3000F37D2 /* Utils.swift */; };
 		48892105271C3129000F37D2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48892104271C3129000F37D2 /* Constants.swift */; };
 		488CCFFC270EFBCB00875594 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488CCFFB270EFBCB00875594 /* RegisterView.swift */; };
@@ -40,6 +41,7 @@
 		485733BF2711ABE200B19A34 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		485733C22714364D00B19A34 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		485733C527144ADA00B19A34 /* PostGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGrid.swift; sourceTree = "<group>"; };
+		48864F08271F4B3B008E1EB2 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		48892102271C29D3000F37D2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		48892104271C3129000F37D2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		488CCFFB270EFBCB00875594 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -129,7 +131,7 @@
 				485733C12714359300B19A34 /* Search */,
 				485733C72715AE6600B19A34 /* NewPost */,
 				480C1EC3271A056C00905E18 /* Notifications */,
-				488CD009271189BD00875594 /* ProfileView.swift */,
+				48864F05271F4AE9008E1EB2 /* Profile */,
 				485733C4271448C200B19A34 /* Items */,
 			);
 			path = View;
@@ -183,6 +185,15 @@
 				488CD0052711894B00875594 /* NewPostView.swift */,
 			);
 			path = NewPost;
+			sourceTree = "<group>";
+		};
+		48864F05271F4AE9008E1EB2 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				488CD009271189BD00875594 /* ProfileView.swift */,
+				48864F08271F4B3B008E1EB2 /* EditProfileView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		48892101271C296A000F37D2 /* Utils */ = {
@@ -287,6 +298,7 @@
 				485733C32714364D00B19A34 /* SearchBar.swift in Sources */,
 				48E66774270CBF5200735A1C /* LoginView.swift in Sources */,
 				488CCFFE270F003C00875594 /* ResetPasswordView.swift in Sources */,
+				48864F09271F4B3B008E1EB2 /* EditProfileView.swift in Sources */,
 				488CD000271185F300875594 /* MainTabView.swift in Sources */,
 				48560CE82709C4F0007543D9 /* PinstagramApp.swift in Sources */,
 				48E66776270CC47500735A1C /* CustomTextField.swift in Sources */,

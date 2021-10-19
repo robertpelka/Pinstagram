@@ -10,6 +10,7 @@ import MapKit
 
 struct ProfileView: View {
     @State var isCurrentUser: Bool
+    @State var bio = "I love traveling, wine and making new friends. Watching netflix is my passion 🤪"
     
     let places = [
         Place(latitude: 30.033333, longitude: 31.233334, image: "postImage"),
@@ -35,7 +36,7 @@ struct ProfileView: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Andrew")
                             .font(.system(size: 18, weight: .semibold))
-                        Text("I love traveling, wine and making new friends 🤪")
+                        Text(bio)
                             .font(.system(size: 16, weight: .regular))
                     }
                     Spacer()
@@ -70,7 +71,10 @@ struct ProfileView: View {
                 .padding(.vertical, 2)
                 
                 if isCurrentUser {
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                    NavigationLink {
+                        EditProfileView(bio: $bio)
+                            .navigationBarBackButtonHidden(true)
+                    } label: {
                         Text("Edit Profile")
                             .font(.system(size: 18, weight: .semibold))
                             .foregroundColor(.primary)
@@ -78,7 +82,7 @@ struct ProfileView: View {
                             .border(K.Colors.primary, width: 2)
                             .cornerRadius(5)
                             .padding()
-                    })
+                    }
                 }
                 else {
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {

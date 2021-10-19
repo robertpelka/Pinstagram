@@ -40,7 +40,7 @@ struct MainTabView: View {
                 }
                 .tag(3)
             
-            ProfileView(isCurrentUser: false)
+            ProfileView(isCurrentUser: true)
                 .tabItem {
                     let imageName = (selection == 4) ? "person.fill" : "person"
                     Image(systemName: imageName)
