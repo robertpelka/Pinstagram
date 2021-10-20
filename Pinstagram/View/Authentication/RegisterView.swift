@@ -24,6 +24,10 @@ struct RegisterView: View {
                 Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
                     VStack {
                         Image("addPictureCircle")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 75, height: 75)
+                            .clipShape(Circle())
                         Text("Add profile picture")
                             .foregroundColor(.white)
                     }

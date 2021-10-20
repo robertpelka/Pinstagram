@@ -27,6 +27,7 @@ struct EditProfileView: View {
                     .font(.system(size: 18, weight: .regular))
             }
             .padding()
+            .padding(.top, 5)
             
             VStack {
                 Text("Your bio")
@@ -44,9 +45,11 @@ struct EditProfileView: View {
                 self.presentationMode.wrappedValue.dismiss()
             }, label: {
                 PrimaryButton(text: "Save Changes")
-                    .padding(.bottom, 25)
+                    .padding(.bottom)
             })
         }
+        .navigationTitle("Edit Profile")
+        .navigationBarTitleDisplayMode(.inline)
         .onTapGesture {
             self.hideKeyboard()
         }

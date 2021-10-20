@@ -15,7 +15,7 @@ struct NewPostView: View {
         NavigationView {
             VStack(alignment: .center) {
                 HStack(alignment: .top) {
-                    Image("postImage")
+                    Image("addPictureSquare")
                         .resizable()
                         .scaledToFill()
                         .frame(width: 85, height: 85)
@@ -30,6 +30,7 @@ struct NewPostView: View {
                             }
                         }
                 }
+                .padding([.top, .horizontal])
                 
                 Group {
                     Text("Detected place: ")
@@ -47,7 +48,6 @@ struct NewPostView: View {
 
                 Spacer()
             }
-            .padding()
             .navigationTitle("New Post")
             .navigationBarTitleDisplayMode(.inline)
         }
