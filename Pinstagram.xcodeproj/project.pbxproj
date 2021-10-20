@@ -17,6 +17,8 @@
 		485733C627144ADA00B19A34 /* PostGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485733C527144ADA00B19A34 /* PostGrid.swift */; };
 		48864F09271F4B3B008E1EB2 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48864F08271F4B3B008E1EB2 /* EditProfileView.swift */; };
 		48864F0D271FFD3B008E1EB2 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48864F0C271FFD3B008E1EB2 /* Icon.swift */; };
+		48864F0F271FFF81008E1EB2 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48864F0E271FFF81008E1EB2 /* PrimaryButton.swift */; };
+		48864F11272000D3008E1EB2 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48864F10272000D3008E1EB2 /* SecondaryButton.swift */; };
 		48892103271C29D3000F37D2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48892102271C29D3000F37D2 /* Utils.swift */; };
 		48892105271C3129000F37D2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48892104271C3129000F37D2 /* Constants.swift */; };
 		488CCFFC270EFBCB00875594 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488CCFFB270EFBCB00875594 /* RegisterView.swift */; };
@@ -44,6 +46,8 @@
 		485733C527144ADA00B19A34 /* PostGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGrid.swift; sourceTree = "<group>"; };
 		48864F08271F4B3B008E1EB2 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		48864F0C271FFD3B008E1EB2 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		48864F0E271FFF81008E1EB2 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		48864F10272000D3008E1EB2 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		48892102271C29D3000F37D2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		48892104271C3129000F37D2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		488CCFFB270EFBCB00875594 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -178,6 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				485733C527144ADA00B19A34 /* PostGrid.swift */,
+				48864F0E271FFF81008E1EB2 /* PrimaryButton.swift */,
+				48864F10272000D3008E1EB2 /* SecondaryButton.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -288,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48864F11272000D3008E1EB2 /* SecondaryButton.swift in Sources */,
 				488CD0022711883200875594 /* FeedView.swift in Sources */,
 				485733C02711ABE200B19A34 /* FeedCell.swift in Sources */,
 				488CD0042711893000875594 /* SearchView.swift in Sources */,
@@ -306,6 +313,7 @@
 				48560CE82709C4F0007543D9 /* PinstagramApp.swift in Sources */,
 				48E66776270CC47500735A1C /* CustomTextField.swift in Sources */,
 				488CD0062711894B00875594 /* NewPostView.swift in Sources */,
+				48864F0F271FFF81008E1EB2 /* PrimaryButton.swift in Sources */,
 				48864F0D271FFD3B008E1EB2 /* Icon.swift in Sources */,
 				48892105271C3129000F37D2 /* Constants.swift in Sources */,
 			);

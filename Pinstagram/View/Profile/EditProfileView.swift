@@ -43,13 +43,7 @@ struct EditProfileView: View {
             Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
             }, label: {
-                Text("Save Changes")
-                    .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity, minHeight: 38)
-                    .background(K.Colors.primary)
-                    .cornerRadius(5)
-                    .padding()
+                PrimaryButton(text: "Save Changes")
                     .padding(.bottom, 25)
             })
         }

@@ -43,13 +43,7 @@ struct RegisterView: View {
                     .padding(.vertical, 5)
                 
                 Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                    Text("Sign Up")
-                        .font(.system(size: 18, weight: .semibold))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity, minHeight: 38)
-                        .background(K.Colors.primary)
-                        .cornerRadius(5)
-                        .padding()
+                    PrimaryButton(text: "Sign Up")
                         .padding(.top, 15)
                 })
                 

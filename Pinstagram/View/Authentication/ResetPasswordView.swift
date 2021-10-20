@@ -24,13 +24,7 @@ struct ResetPasswordView: View {
                     .padding(.vertical, 5)
                 
                 Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                    Text("Reset Password")
-                        .font(.system(size: 18, weight: .semibold))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity, minHeight: 38)
-                        .background(K.Colors.primary)
-                        .cornerRadius(5)
-                        .padding()
+                    PrimaryButton(text: "Reset Password")
                         .padding(.top, 15)
                 })
                 

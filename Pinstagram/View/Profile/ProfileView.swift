@@ -75,24 +75,12 @@ struct ProfileView: View {
                         EditProfileView(bio: $bio)
                             .navigationBarBackButtonHidden(true)
                     } label: {
-                        Text("Edit Profile")
-                            .font(.system(size: 18, weight: .semibold))
-                            .foregroundColor(.primary)
-                            .frame(maxWidth: .infinity, minHeight: 38)
-                            .border(K.Colors.primary, width: 2)
-                            .cornerRadius(5)
-                            .padding()
+                        SecondaryButton(text: "Edit Profile")
                     }
                 }
                 else {
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                        Text("Follow")
-                            .font(.system(size: 18, weight: .semibold))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity, minHeight: 38)
-                            .background(K.Colors.primary)
-                            .cornerRadius(5)
-                            .padding()
+                        PrimaryButton(text: "Follow")
                     })
                 }
                 
@@ -135,7 +123,7 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(isCurrentUser: true)
+        ProfileView(isCurrentUser: false)
     }
 }
 
