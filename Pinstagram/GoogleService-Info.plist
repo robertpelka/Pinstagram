@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>652376777495-8ge90gvlf8chglar93qg2nbvt0up6v5h.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.652376777495-8ge90gvlf8chglar93qg2nbvt0up6v5h</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDCk2Yh-eG0ah52PLLeTvcXgh717Ti3ox4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>652376777495</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.robertpelka.Pinstagram</string>
+	<key>PROJECT_ID</key>
+	<string>pinstagram-fb2c4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>pinstagram-fb2c4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:652376777495:ios:09f83bd87ff1299b518d52</string>
+</dict>
+</plist>
