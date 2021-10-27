@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ResetPasswordView: View {
     @State private var email = ""
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         ZStack {
@@ -28,15 +29,20 @@ struct ResetPasswordView: View {
                         .padding(.top, 15)
                 })
                 
-                Text("Go back to")
-                    .foregroundColor(.white)
-                    .font(.system(size: 18, weight: .light))
-                    +
-                    Text(" Login Screen.")
-                    .foregroundColor(.white)
-                    .font(.system(size: 18, weight: .semibold))
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    Text("Go back to")
+                        .foregroundColor(.white)
+                        .font(.system(size: 18, weight: .light))
+                        +
+                        Text(" Login Screen.")
+                        .foregroundColor(.white)
+                        .font(.system(size: 18, weight: .semibold))
+                }
             }
         }
+        .navigationBarHidden(true)
         .onTapGesture {
             self.hideKeyboard()
         }
@@ -46,6 +52,5 @@ struct ResetPasswordView: View {
 struct ResetPasswordView_Previews: PreviewProvider {
     static var previews: some View {
         ResetPasswordView()
-            .previewDevice("iPhone SE (2nd generation)")
     }
 }

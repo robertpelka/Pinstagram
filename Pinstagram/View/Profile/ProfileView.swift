@@ -112,7 +112,7 @@ struct ProfileView: View {
             .toolbar {
                 if isCurrentUser {
                     Button("Logout") {
-                        print("Logout tapped!")
+                        AuthViewModel.shared.logOut()
                     }
                 }
             }

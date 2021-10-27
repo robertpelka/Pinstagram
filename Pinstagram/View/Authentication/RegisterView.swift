@@ -11,7 +11,9 @@ struct RegisterView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var username = ""
-    
+    @EnvironmentObject var viewModel: AuthViewModel
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [K.Colors.primary, Color(red: 158/255, green: 154/255, blue: 43/255), Color(red: 185/255, green: 77/255, blue: 16/255)]), startPoint: .top, endPoint: .bottom)
@@ -46,20 +48,27 @@ struct RegisterView: View {
                     .padding(.horizontal)
                     .padding(.vertical, 5)
                 
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Button(action: {
+                    viewModel.register(withEmail: email, password: password, username: username)
+                }, label: {
                     PrimaryButton(text: "Sign Up")
                         .padding(.top, 15)
                 })
                 
-                Text("Already have an account?")
-                    .foregroundColor(.white)
-                    .font(.system(size: 18, weight: .light))
-                    +
-                    Text(" Log in.")
-                    .foregroundColor(.white)
-                    .font(.system(size: 18, weight: .semibold))
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    Text("Already have an account?")
+                        .foregroundColor(.white)
+                        .font(.system(size: 18, weight: .light))
+                        +
+                        Text(" Log in.")
+                        .foregroundColor(.white)
+                        .font(.system(size: 18, weight: .semibold))
+                }
             }
         }
+        .navigationBarHidden(true)
         .onTapGesture {
             self.hideKeyboard()
         }

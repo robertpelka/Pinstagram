@@ -13,6 +13,8 @@
 		4836ABC32722BD3A00D85328 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4836ABC22722BD3A00D85328 /* FirebaseFirestore */; };
 		4836ABC52722BD3A00D85328 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 4836ABC42722BD3A00D85328 /* FirebaseFirestoreSwift-Beta */; };
 		4836ABC72722BD3A00D85328 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4836ABC62722BD3A00D85328 /* FirebaseStorage */; };
+		4836ABC92723F25700D85328 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4836ABC82723F25700D85328 /* User.swift */; };
+		4836ABCC2723F5F900D85328 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4836ABCB2723F5F900D85328 /* AuthViewModel.swift */; };
 		48560CE82709C4F0007543D9 /* PinstagramApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48560CE72709C4F0007543D9 /* PinstagramApp.swift */; };
 		48560CEA2709C4F0007543D9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48560CE92709C4F0007543D9 /* ContentView.swift */; };
 		48560CEC2709C4F1007543D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48560CEB2709C4F1007543D9 /* Assets.xcassets */; };
@@ -41,6 +43,8 @@
 /* Begin PBXFileReference section */
 		480C1EC12719F30400905E18 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		4836ABBD2722B8D100D85328 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4836ABC82723F25700D85328 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4836ABCB2723F5F900D85328 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		48560CE42709C4F0007543D9 /* Pinstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pinstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48560CE72709C4F0007543D9 /* PinstagramApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinstagramApp.swift; sourceTree = "<group>"; };
 		48560CE92709C4F0007543D9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,6 +96,14 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
+		4836ABCA2723F5C600D85328 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				4836ABCB2723F5F900D85328 /* AuthViewModel.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 		48560CDB2709C4F0007543D9 = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +147,7 @@
 		48560CF62709C571007543D9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4836ABC82723F25700D85328 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -157,6 +170,7 @@
 		48560CF82709C57D007543D9 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4836ABCA2723F5C600D85328 /* Authentication */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -335,8 +349,10 @@
 				48E66776270CC47500735A1C /* CustomTextField.swift in Sources */,
 				488CD0062711894B00875594 /* NewPostView.swift in Sources */,
 				48864F0F271FFF81008E1EB2 /* PrimaryButton.swift in Sources */,
+				4836ABCC2723F5F900D85328 /* AuthViewModel.swift in Sources */,
 				48864F0D271FFD3B008E1EB2 /* Icon.swift in Sources */,
 				48892105271C3129000F37D2 /* Constants.swift in Sources */,
+				4836ABC92723F25700D85328 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
