@@ -10,6 +10,7 @@ import SwiftUI
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
+    @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
         NavigationView {
@@ -41,7 +42,9 @@ struct LoginView: View {
                         }
                     }
                     
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                    Button(action: {
+                        viewModel.logIn(withEmail: email, password: password)
+                    }, label: {
                         PrimaryButton(text: "Log In")
                             .padding(.top, 15)
                     })

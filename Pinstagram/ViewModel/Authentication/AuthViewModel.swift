@@ -60,6 +60,16 @@ class AuthViewModel: ObservableObject {
         }
     }
     
+    func logIn(withEmail email: String, password: String) {
+        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+            if let error = error {
+                print("DEBUG: Error logging user in: \(error.localizedDescription)")
+            }
+            print("LOGOWANIEeeeee")
+            self.fetchCurrentUser()
+        }
+    }
+    
     func logOut() {
         do {
             try Auth.auth().signOut()
