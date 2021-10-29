@@ -11,6 +11,7 @@ import FirebaseFirestoreSwift
 
 class AuthViewModel: ObservableObject {
     @Published var currentUser: User?
+    @Published var isUserLoggedChecked = false
     
     static var shared = AuthViewModel()
     
@@ -40,7 +41,10 @@ class AuthViewModel: ObservableObject {
     }
     
     func fetchCurrentUser() {
-        guard let userID = Auth.auth().currentUser?.uid else { return }
+        guard let userID = Auth.auth().currentUser?.uid else {
+            self.isUserLoggedChecked = true
+            return
+        }
         
         K.Collections.users.document(userID).getDocument { document, error in
             if let error = error {
@@ -48,6 +52,7 @@ class AuthViewModel: ObservableObject {
             }
             do {
                 self.currentUser = try document?.data(as: User.self)
+                self.isUserLoggedChecked = true
             }
             catch {
                 print("DEBUG: Error fetching user: \(error.localizedDescription)")

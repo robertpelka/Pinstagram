@@ -36,6 +36,8 @@
 		488CD0062711894B00875594 /* NewPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488CD0052711894B00875594 /* NewPostView.swift */; };
 		488CD0082711896800875594 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488CD0072711896800875594 /* NotificationsView.swift */; };
 		488CD00A271189BD00875594 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488CD009271189BD00875594 /* ProfileView.swift */; };
+		48E4782D272BF1750030E85D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48E4782C272BF1750030E85D /* LaunchScreen.storyboard */; };
+		48E4782F272C7EBA0030E85D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E4782E272C7EBA0030E85D /* LoadingView.swift */; };
 		48E66774270CBF5200735A1C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E66773270CBF5200735A1C /* LoginView.swift */; };
 		48E66776270CC47500735A1C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E66775270CC47500735A1C /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
@@ -68,6 +70,8 @@
 		488CD0052711894B00875594 /* NewPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostView.swift; sourceTree = "<group>"; };
 		488CD0072711896800875594 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		488CD009271189BD00875594 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		48E4782C272BF1750030E85D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		48E4782E272C7EBA0030E85D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		48E66773270CBF5200735A1C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		48E66775270CC47500735A1C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,6 +185,8 @@
 				48560CE92709C4F0007543D9 /* ContentView.swift */,
 				488CCFFF271185F300875594 /* MainTabView.swift */,
 				48864F0C271FFD3B008E1EB2 /* Icon.swift */,
+				48E4782E272C7EBA0030E85D /* LoadingView.swift */,
+				48E4782C272BF1750030E85D /* LaunchScreen.storyboard */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -317,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				48560CEF2709C4F1007543D9 /* Preview Assets.xcassets in Resources */,
+				48E4782D272BF1750030E85D /* LaunchScreen.storyboard in Resources */,
 				48560CEC2709C4F1007543D9 /* Assets.xcassets in Resources */,
 				4836ABBE2722B8D100D85328 /* GoogleService-Info.plist in Resources */,
 			);
@@ -334,6 +341,7 @@
 				485733C02711ABE200B19A34 /* FeedCell.swift in Sources */,
 				488CD0042711893000875594 /* SearchView.swift in Sources */,
 				48560CEA2709C4F0007543D9 /* ContentView.swift in Sources */,
+				48E4782F272C7EBA0030E85D /* LoadingView.swift in Sources */,
 				488CD0082711896800875594 /* NotificationsView.swift in Sources */,
 				488CD00A271189BD00875594 /* ProfileView.swift in Sources */,
 				485733C627144ADA00B19A34 /* PostGrid.swift in Sources */,

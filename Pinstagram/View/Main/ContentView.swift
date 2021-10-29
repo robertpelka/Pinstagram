@@ -11,11 +11,16 @@ struct ContentView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
-        if (viewModel.currentUser != nil) {
-            MainTabView()
+        if viewModel.isUserLoggedChecked {
+            if (viewModel.currentUser != nil) {
+                MainTabView()
+            }
+            else {
+                LoginView()
+            }
         }
         else {
-            LoginView()
+            LoadingView()
         }
     }
 }
