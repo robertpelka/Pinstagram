@@ -65,7 +65,6 @@ class AuthViewModel: ObservableObject {
             if let error = error {
                 print("DEBUG: Error logging user in: \(error.localizedDescription)")
             }
-            print("LOGOWANIEeeeee")
             self.fetchCurrentUser()
         }
     }
@@ -78,6 +77,10 @@ class AuthViewModel: ObservableObject {
         catch {
             print("DEBUG: Error logging out: \(error.localizedDescription)")
         }
+    }
+    
+    func sendPasswordReset(withEmail email: String, completion: @escaping (Error?) -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email, completion: completion)
     }
     
 }

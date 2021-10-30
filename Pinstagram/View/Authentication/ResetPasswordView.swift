@@ -9,7 +9,10 @@ import SwiftUI
 
 struct ResetPasswordView: View {
     @State private var email = ""
+    @EnvironmentObject var viewModel: AuthViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State private var shouldShowAlert = false
+    @State var errorMessage: String?
     
     var body: some View {
         ZStack {
@@ -24,7 +27,17 @@ struct ResetPasswordView: View {
                     .padding(.horizontal)
                     .padding(.vertical, 5)
                 
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Button(action: {
+                    viewModel.sendPasswordReset(withEmail: email) { error in
+                        if let error = error {
+                            shouldShowAlert = true
+                            errorMessage = error.localizedDescription
+                        }
+                        else {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    }
+                }, label: {
                     PrimaryButton(text: "Reset Password")
                         .padding(.top, 15)
                 })
@@ -45,6 +58,9 @@ struct ResetPasswordView: View {
         .navigationBarHidden(true)
         .onTapGesture {
             self.hideKeyboard()
+        }
+        .alert(isPresented: $shouldShowAlert) {
+            Alert(title: Text(errorMessage ?? "Error"), dismissButton: .default(Text("OK")))
         }
     }
 }
