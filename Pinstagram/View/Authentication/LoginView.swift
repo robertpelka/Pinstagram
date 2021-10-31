@@ -11,6 +11,8 @@ struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
     @EnvironmentObject var viewModel: AuthViewModel
+    @State private var shouldShowAlert = false
+    @State var errorMessage: String?
     
     var body: some View {
         NavigationView {
@@ -43,7 +45,15 @@ struct LoginView: View {
                     }
                     
                     Button(action: {
-                        viewModel.logIn(withEmail: email, password: password)
+                        viewModel.logIn(withEmail: email, password: password) { _, error in
+                            if let error = error {
+                                shouldShowAlert = true
+                                errorMessage = error.localizedDescription
+                            }
+                            else {
+                                viewModel.fetchCurrentUser()
+                            }
+                        }
                     }, label: {
                         PrimaryButton(text: "Log In")
                             .padding(.top, 15)
@@ -65,6 +75,9 @@ struct LoginView: View {
             .navigationBarHidden(true)
             .onTapGesture {
                 self.hideKeyboard()
+            }
+            .alert(isPresented: $shouldShowAlert) {
+                Alert(title: Text(errorMessage ?? "Error"), dismissButton: .default(Text("OK")))
             }
         }
     }

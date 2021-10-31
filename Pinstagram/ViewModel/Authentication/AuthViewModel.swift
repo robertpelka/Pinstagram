@@ -19,10 +19,10 @@ class AuthViewModel: ObservableObject {
         fetchCurrentUser()
     }
     
-    func register(withEmail email: String, password: String, username: String) {
+    func register(withEmail email: String, password: String, username: String, completion: @escaping (Error?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let error = error {
-                print("DEBUG: Error creating new user: \(error.localizedDescription)")
+                completion(error)
                 return
             }
             
@@ -33,7 +33,7 @@ class AuthViewModel: ObservableObject {
                 try K.Collections.users.document(firebaseUser.uid).setData(from: user)
             }
             catch let error {
-                print("DEBUG: Error saving user data to Firestore: \(error.localizedDescription)")
+                completion(error)
             }
             
             self.fetchCurrentUser()
@@ -60,13 +60,8 @@ class AuthViewModel: ObservableObject {
         }
     }
     
-    func logIn(withEmail email: String, password: String) {
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
-            if let error = error {
-                print("DEBUG: Error logging user in: \(error.localizedDescription)")
-            }
-            self.fetchCurrentUser()
-        }
+    func logIn(withEmail email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password, completion: completion)
     }
     
     func logOut() {

@@ -13,6 +13,8 @@ struct RegisterView: View {
     @State private var username = ""
     @EnvironmentObject var viewModel: AuthViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State private var shouldShowAlert = false
+    @State var errorMessage: String?
 
     var body: some View {
         ZStack {
@@ -49,7 +51,12 @@ struct RegisterView: View {
                     .padding(.vertical, 5)
                 
                 Button(action: {
-                    viewModel.register(withEmail: email, password: password, username: username)
+                    viewModel.register(withEmail: email, password: password, username: username) { error in
+                        if let error = error {
+                            shouldShowAlert = true
+                            errorMessage = error.localizedDescription
+                        }
+                    }
                 }, label: {
                     PrimaryButton(text: "Sign Up")
                         .padding(.top, 15)
@@ -71,6 +78,9 @@ struct RegisterView: View {
         .navigationBarHidden(true)
         .onTapGesture {
             self.hideKeyboard()
+        }
+        .alert(isPresented: $shouldShowAlert) {
+            Alert(title: Text(errorMessage ?? "Error"), dismissButton: .default(Text("OK")))
         }
     }
 }
