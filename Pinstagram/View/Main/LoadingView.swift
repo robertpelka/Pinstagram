@@ -18,8 +18,7 @@ struct LoadingView: View {
                     .padding()
                 
                 ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
-                    .scaleEffect(1.2, anchor: .center)
+                    .progressViewStyle(CustomProgressStyle(size: 32))
             }
         }
     }
