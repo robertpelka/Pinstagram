@@ -42,7 +42,7 @@ struct NewPostView: View {
                 .padding()
                 
                 Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                    PrimaryButton(text: "Add Post")
+                    PrimaryButton(text: "Add Post", isLoading: .constant(false))
                         .padding(.top)
                 })
 

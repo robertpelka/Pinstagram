@@ -15,6 +15,8 @@ struct RegisterView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var shouldShowAlert = false
     @State var errorMessage: String?
+    @State var isLoading = false
+    @State var isButtonDisabled = false
 
     var body: some View {
         ZStack {
@@ -51,16 +53,21 @@ struct RegisterView: View {
                     .padding(.vertical, 5)
                 
                 Button(action: {
+                    isLoading = true
+                    isButtonDisabled = true
                     viewModel.register(withEmail: email, password: password, username: username) { error in
                         if let error = error {
                             shouldShowAlert = true
                             errorMessage = error.localizedDescription
+                            isLoading = false
+                            isButtonDisabled = false
                         }
                     }
                 }, label: {
-                    PrimaryButton(text: "Sign Up")
+                    PrimaryButton(text: "Sign Up", isLoading: $isLoading)
                         .padding(.top, 15)
                 })
+                    .disabled(isButtonDisabled)
                 
                 Button {
                     presentationMode.wrappedValue.dismiss()

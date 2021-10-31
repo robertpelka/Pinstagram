@@ -80,7 +80,7 @@ struct ProfileView: View {
                 }
                 else {
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                        PrimaryButton(text: "Follow")
+                        PrimaryButton(text: "Follow", isLoading: .constant(false))
                     })
                 }
                 

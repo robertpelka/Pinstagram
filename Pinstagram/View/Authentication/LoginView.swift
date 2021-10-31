@@ -13,6 +13,8 @@ struct LoginView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     @State private var shouldShowAlert = false
     @State var errorMessage: String?
+    @State var isLoading = false
+    @State var isButtonDisabled = false
     
     var body: some View {
         NavigationView {
@@ -45,19 +47,25 @@ struct LoginView: View {
                     }
                     
                     Button(action: {
+                        isLoading = true
+                        isButtonDisabled = true
                         viewModel.logIn(withEmail: email, password: password) { _, error in
                             if let error = error {
                                 shouldShowAlert = true
                                 errorMessage = error.localizedDescription
+                                print(error)
+                                isLoading = false
+                                isButtonDisabled = false
                             }
                             else {
                                 viewModel.fetchCurrentUser()
                             }
                         }
                     }, label: {
-                        PrimaryButton(text: "Log In")
+                        PrimaryButton(text: "Log In", isLoading: $isLoading)
                             .padding(.top, 15)
                     })
+                        .disabled(isButtonDisabled)
                     
                     NavigationLink {
                         RegisterView()

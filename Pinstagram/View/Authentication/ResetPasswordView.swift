@@ -13,6 +13,8 @@ struct ResetPasswordView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var shouldShowAlert = false
     @State var errorMessage: String?
+    @State var isLoading = false
+    @State var isButtonDisabled = false
     
     var body: some View {
         ZStack {
@@ -28,19 +30,24 @@ struct ResetPasswordView: View {
                     .padding(.vertical, 5)
                 
                 Button(action: {
+                    isLoading = true
+                    isButtonDisabled = true
                     viewModel.sendPasswordReset(withEmail: email) { error in
                         if let error = error {
                             shouldShowAlert = true
                             errorMessage = error.localizedDescription
+                            isLoading = false
+                            isButtonDisabled = false
                         }
                         else {
                             presentationMode.wrappedValue.dismiss()
                         }
                     }
                 }, label: {
-                    PrimaryButton(text: "Reset Password")
+                    PrimaryButton(text: "Reset Password", isLoading: $isLoading)
                         .padding(.top, 15)
                 })
+                    .disabled(isButtonDisabled)
                 
                 Button {
                     presentationMode.wrappedValue.dismiss()
@@ -48,8 +55,8 @@ struct ResetPasswordView: View {
                     Text("Go back to")
                         .foregroundColor(.white)
                         .font(.system(size: 18, weight: .light))
-                        +
-                        Text(" Login Screen.")
+                    +
+                    Text(" Login Screen.")
                         .foregroundColor(.white)
                         .font(.system(size: 18, weight: .semibold))
                 }

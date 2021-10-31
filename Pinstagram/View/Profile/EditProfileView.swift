@@ -44,7 +44,7 @@ struct EditProfileView: View {
             Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
             }, label: {
-                PrimaryButton(text: "Save Changes")
+                PrimaryButton(text: "Save Changes", isLoading: .constant(false))
                     .padding(.bottom)
             })
         }
