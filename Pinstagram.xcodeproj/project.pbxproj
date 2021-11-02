@@ -39,6 +39,7 @@
 		48E4782D272BF1750030E85D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48E4782C272BF1750030E85D /* LaunchScreen.storyboard */; };
 		48E4782F272C7EBA0030E85D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E4782E272C7EBA0030E85D /* LoadingView.swift */; };
 		48E47835272EA7560030E85D /* CustomProgressStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E47834272EA7560030E85D /* CustomProgressStyle.swift */; };
+		48E478392731B6FC0030E85D /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E478382731B6FA0030E85D /* PhotoPicker.swift */; };
 		48E66774270CBF5200735A1C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E66773270CBF5200735A1C /* LoginView.swift */; };
 		48E66776270CC47500735A1C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E66775270CC47500735A1C /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
@@ -74,6 +75,7 @@
 		48E4782C272BF1750030E85D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		48E4782E272C7EBA0030E85D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		48E47834272EA7560030E85D /* CustomProgressStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressStyle.swift; sourceTree = "<group>"; };
+		48E478382731B6FA0030E85D /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		48E66773270CBF5200735A1C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		48E66775270CC47500735A1C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -244,6 +246,7 @@
 			children = (
 				48892102271C29D3000F37D2 /* Utils.swift */,
 				48892104271C3129000F37D2 /* Constants.swift */,
+				48E478382731B6FA0030E85D /* PhotoPicker.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				48864F11272000D3008E1EB2 /* SecondaryButton.swift in Sources */,
 				488CD0022711883200875594 /* FeedView.swift in Sources */,
 				485733C02711ABE200B19A34 /* FeedCell.swift in Sources */,
+				48E478392731B6FC0030E85D /* PhotoPicker.swift in Sources */,
 				488CD0042711893000875594 /* SearchView.swift in Sources */,
 				48560CEA2709C4F0007543D9 /* ContentView.swift in Sources */,
 				48E4782F272C7EBA0030E85D /* LoadingView.swift in Sources */,

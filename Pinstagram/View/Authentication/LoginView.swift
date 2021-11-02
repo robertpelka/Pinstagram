@@ -53,7 +53,6 @@ struct LoginView: View {
                             if let error = error {
                                 shouldShowAlert = true
                                 errorMessage = error.localizedDescription
-                                print(error)
                                 isLoading = false
                                 isButtonDisabled = false
                             }
