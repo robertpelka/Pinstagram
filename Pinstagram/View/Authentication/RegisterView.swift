@@ -39,6 +39,8 @@ struct RegisterView: View {
                                 .scaledToFill()
                                 .frame(width: 75, height: 75)
                                 .clipShape(Circle())
+                            Text("Change profile picture")
+                                .foregroundColor(.white)
                         }
                         else {
                             Image("addPictureCircle")
@@ -46,9 +48,9 @@ struct RegisterView: View {
                                 .scaledToFill()
                                 .frame(width: 75, height: 75)
                                 .clipShape(Circle())
+                            Text("Add profile picture")
+                                .foregroundColor(.white)
                         }
-                        Text("Add profile picture")
-                            .foregroundColor(.white)
                     }
                 })
                 .padding(.bottom)
@@ -71,13 +73,28 @@ struct RegisterView: View {
                 Button(action: {
                     isLoading = true
                     isButtonDisabled = true
-                    viewModel.register(withEmail: email, password: password, username: username) { error in
-                        if let error = error {
-                            shouldShowAlert = true
-                            errorMessage = error.localizedDescription
-                            isLoading = false
-                            isButtonDisabled = false
+                    if username == "" {
+                        shouldShowAlert = true
+                        errorMessage = "Please enter your username."
+                        isLoading = false
+                        isButtonDisabled = false
+                        return
+                    }
+                    if let image = selectedImage {
+                        viewModel.register(withEmail: email, password: password, username: username, image: image) { error in
+                            if let error = error {
+                                shouldShowAlert = true
+                                errorMessage = error.localizedDescription
+                                isLoading = false
+                                isButtonDisabled = false
+                            }
                         }
+                    }
+                    else {
+                        shouldShowAlert = true
+                        errorMessage = "Please add profile picture."
+                        isLoading = false
+                        isButtonDisabled = false
                     }
                 }, label: {
                     PrimaryButton(text: "Sign Up", isLoading: $isLoading)

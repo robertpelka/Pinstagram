@@ -8,6 +8,7 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import UIKit
 
 class AuthViewModel: ObservableObject {
     @Published var currentUser: User?
@@ -19,7 +20,7 @@ class AuthViewModel: ObservableObject {
         fetchCurrentUser()
     }
     
-    func register(withEmail email: String, password: String, username: String, completion: @escaping (Error?) -> Void) {
+    func register(withEmail email: String, password: String, username: String, image: UIImage, completion: @escaping (Error?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let error = error {
                 completion(error)
@@ -28,15 +29,19 @@ class AuthViewModel: ObservableObject {
             
             guard let firebaseUser = authResult?.user else { return }
             
-            let user = User(id: firebaseUser.uid, username: username, profileImage: "#")
-            do {
-                try K.Collections.users.document(firebaseUser.uid).setData(from: user)
-            }
-            catch let error {
-                completion(error)
+            ImageUploader.uploadImage(image: image, fileName: firebaseUser.uid, type: .profileImage) { imageURL in
+                let user = User(id: firebaseUser.uid, username: username, profileImage: imageURL)
+                do {
+                    try K.Collections.users.document(firebaseUser.uid).setData(from: user)
+                }
+                catch let error {
+                    print("DEBUG: Error uploading user data: \(error.localizedDescription)")
+                    return
+                }
+                
+                self.fetchCurrentUser()
             }
             
-            self.fetchCurrentUser()
         }
     }
     
