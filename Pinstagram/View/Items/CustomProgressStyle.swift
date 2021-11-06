@@ -10,10 +10,12 @@ import SwiftUI
 struct CustomProgressStyle: ProgressViewStyle {
     var size: Double
     @State var isAnimating = false
+    var isColorSchemeConsidered = false
+    @Environment(\.colorScheme) var colorScheme
     
     func makeBody(configuration: Configuration) -> some View {
         Circle()
-            .stroke(AngularGradient(colors: [Color(white: 1, opacity: 0), Color.white], center: .center, startAngle: .zero, endAngle: .degrees(270)), style: StrokeStyle(lineWidth: CGFloat(size/5)))
+            .stroke(AngularGradient(colors: (isColorSchemeConsidered && colorScheme == .light) ? [Color(white: 0, opacity: 0), Color.black] : [Color(white: 1, opacity: 0), Color.white], center: .center, startAngle: .zero, endAngle: .degrees(270)), style: StrokeStyle(lineWidth: CGFloat(size/6)))
             .frame(width: size, height: size)
             .rotationEffect(Angle.degrees(isAnimating ? 360 : 0))
             .animation(.linear(duration: 0.75).repeatForever(autoreverses: false))

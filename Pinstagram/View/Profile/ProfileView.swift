@@ -25,8 +25,7 @@ struct ProfileView: View {
         NavigationView {
             VStack(spacing: 0) {
                 HStack {
-                    Image("profileImage")
-                        .resizable()
+                    WebImage(url: URL(string: viewModel.user.profileImage))
                         .scaledToFill()
                         .frame(width: 75, height: 75)
                         .clipShape(Circle())
