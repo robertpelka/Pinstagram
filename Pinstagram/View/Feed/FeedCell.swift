@@ -12,8 +12,7 @@ struct FeedCell: View {
         ScrollView {
             VStack(alignment: .leading) {
                 HStack {
-                    Image("profileImage")
-                        .resizable()
+                    WebImage(url: URL(string: ""))
                         .scaledToFill()
                         .frame(width: 40, height: 40)
                         .clipShape(Circle())
@@ -30,10 +29,9 @@ struct FeedCell: View {
                         .font(.system(size: 16, weight: .semibold))
                 }
                 
-                Image("postImage")
-                    .resizable()
+                WebImage(url: URL(string: ""))
                     .scaledToFill()
-                    .frame(maxWidth: .infinity, maxHeight: 500)
+                    .frame(maxWidth: .infinity, minHeight: UIScreen.main.bounds.width, maxHeight: 500)
                     .fixedSize(horizontal: false, vertical: true)
                     .clipped()
                 

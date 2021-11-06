@@ -37,6 +37,7 @@ struct ProfileView: View {
                         Text(viewModel.user.bio)
                             .font(.system(size: 16, weight: .regular))
                     }
+                    
                     Spacer()
                 }
                 .padding()

@@ -18,9 +18,12 @@ struct CustomProgressStyle: ProgressViewStyle {
             .stroke(AngularGradient(colors: (isColorSchemeConsidered && colorScheme == .light) ? [Color(white: 0, opacity: 0), Color.black] : [Color(white: 1, opacity: 0), Color.white], center: .center, startAngle: .zero, endAngle: .degrees(270)), style: StrokeStyle(lineWidth: CGFloat(size/6)))
             .frame(width: size, height: size)
             .rotationEffect(Angle.degrees(isAnimating ? 360 : 0))
-            .animation(.linear(duration: 0.75).repeatForever(autoreverses: false))
             .onAppear() {
-                self.isAnimating = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) { // workaround for a bug, caused by animation starting before the view is fully rendered
+                    withAnimation(.linear(duration: 0.75).repeatForever(autoreverses: false)) {
+                        self.isAnimating = true
+                    }
+                }
             }
     }
 }
