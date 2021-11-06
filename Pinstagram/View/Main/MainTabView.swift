@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainTabView: View {
     @State private var selection = 0
+    @State var currentUser: User
     
     var body: some View {
         TabView(selection: $selection) {
@@ -40,7 +41,7 @@ struct MainTabView: View {
                 }
                 .tag(3)
             
-            ProfileView(isCurrentUser: true)
+            ProfileView(viewModel: ProfileViewModel(user: currentUser))
                 .tabItem {
                     let imageName = (selection == 4) ? "person.fill" : "person"
                     Icon(imageName: imageName)
@@ -53,6 +54,6 @@ struct MainTabView: View {
 
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabView()
+        MainTabView(currentUser: User(id: "", username: "Andrew", profileImage: ""))
     }
 }

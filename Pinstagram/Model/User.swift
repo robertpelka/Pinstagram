@@ -15,4 +15,8 @@ struct User: Codable {
     var visitedCountries: Int = 0
     var followers: Int = 0
     var following: Int = 0
+    
+    var isCurrentUser: Bool {
+        return AuthViewModel.shared.currentUser?.id == self.id
+    }
 }

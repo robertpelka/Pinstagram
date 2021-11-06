@@ -9,8 +9,7 @@ import SwiftUI
 import MapKit
 
 struct ProfileView: View {
-    @State var isCurrentUser: Bool
-    @State var bio = "I love traveling, wine and making new friends. Watching netflix is my passion 🤪"
+    @ObservedObject var viewModel: ProfileViewModel
     
     let places = [
         Place(latitude: 30.033333, longitude: 31.233334, image: "postImage"),
@@ -34,9 +33,9 @@ struct ProfileView: View {
                         .padding(.trailing, 5)
                     
                     VStack(alignment: .leading, spacing: 2) {
-                        Text("Andrew")
+                        Text(viewModel.user.username)
                             .font(.system(size: 18, weight: .semibold))
-                        Text(bio)
+                        Text(viewModel.user.bio)
                             .font(.system(size: 16, weight: .regular))
                     }
                     Spacer()
@@ -47,7 +46,7 @@ struct ProfileView: View {
                     VStack {
                         Text("Countries")
                             .font(.system(size: 18, weight: .semibold))
-                        Text("7")
+                        Text(String(viewModel.user.visitedCountries))
                             .font(.system(size: 18, weight: .regular))
                     }
                     .frame(maxWidth: .infinity)
@@ -55,7 +54,7 @@ struct ProfileView: View {
                     VStack {
                         Text("Followers")
                             .font(.system(size: 18, weight: .semibold))
-                        Text("124")
+                        Text(String(viewModel.user.followers))
                             .font(.system(size: 18, weight: .regular))
                     }
                     .frame(maxWidth: .infinity)
@@ -63,16 +62,16 @@ struct ProfileView: View {
                     VStack {
                         Text("Following")
                             .font(.system(size: 18, weight: .semibold))
-                        Text("92")
+                        Text(String(viewModel.user.following))
                             .font(.system(size: 18, weight: .regular))
                     }
                     .frame(maxWidth: .infinity)
                 }
                 .padding(.vertical, 2)
                 
-                if isCurrentUser {
+                if viewModel.user.isCurrentUser {
                     NavigationLink {
-                        EditProfileView(bio: $bio)
+                        EditProfileView(bio: $viewModel.user.bio)
                             .navigationBarBackButtonHidden(true)
                     } label: {
                         SecondaryButton(text: "Edit Profile")
@@ -110,7 +109,7 @@ struct ProfileView: View {
             .navigationTitle("Profile")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                if isCurrentUser {
+                if viewModel.user.isCurrentUser {
                     Button("Logout") {
                         AuthViewModel.shared.logOut()
                     }
@@ -123,7 +122,7 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(isCurrentUser: true)
+        ProfileView(viewModel: ProfileViewModel(user: User(id: "", username: "Andrew", profileImage: "")))
     }
 }
 
