@@ -17,11 +17,14 @@ enum uploadType: String {
 struct ImageUploader {
     static func uploadImage(image: UIImage, fileName: String, type: uploadType, completion: @escaping (String) -> Void) {
         let imageRef = Storage.storage().reference().child(type.rawValue + fileName + ".jpeg")
-        guard let image = image.jpegData(compressionQuality: 0.5) else {
+        let resizedImage = image.resize(maxSideLength: (type == .profileImage) ? 128 : 1024)
+        
+        guard let compressedImage = resizedImage.jpegData(compressionQuality: 0.1) else {
             print("DEBUG: Error converting UIImage to jpeg.")
             return
         }
-        imageRef.putData(image, metadata: nil) { metadata, error in
+        
+        imageRef.putData(compressedImage, metadata: nil) { metadata, error in
             if let error = error {
                 print("DEBUG: Error uploading image: \(error.localizedDescription)")
                 return
