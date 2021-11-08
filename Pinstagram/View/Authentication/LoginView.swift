@@ -10,9 +10,12 @@ import SwiftUI
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
+    
     @EnvironmentObject var viewModel: AuthViewModel
+    
     @State private var shouldShowAlert = false
     @State var errorMessage: String?
+    
     @State var isLoading = false
     @State var isButtonDisabled = false
     

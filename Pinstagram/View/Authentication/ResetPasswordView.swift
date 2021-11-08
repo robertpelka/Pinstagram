@@ -9,10 +9,13 @@ import SwiftUI
 
 struct ResetPasswordView: View {
     @State private var email = ""
+    
     @EnvironmentObject var viewModel: AuthViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     @State private var shouldShowAlert = false
     @State var errorMessage: String?
+    
     @State var isLoading = false
     @State var isButtonDisabled = false
     

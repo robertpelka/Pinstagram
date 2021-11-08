@@ -10,10 +10,11 @@ import PhotosUI
 
 struct PhotoPicker: UIViewControllerRepresentable {
     @Binding var image: UIImage?
+    @Binding var coordinate: CLLocationCoordinate2D?
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     func makeUIViewController(context: Context) -> PHPickerViewController {
-        var configuration = PHPickerConfiguration()
+        var configuration = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
         configuration.filter = .images
         configuration.selectionLimit = 1
         let controller = PHPickerViewController(configuration: configuration)
@@ -46,6 +47,15 @@ struct PhotoPicker: UIViewControllerRepresentable {
                             self.parent.image = image as? UIImage
                         }
                     }
+                }
+                
+                if let assetID = result.assetIdentifier {
+                    let assetResults = PHAsset.fetchAssets(withLocalIdentifiers: [assetID], options: nil)
+                    self.parent.coordinate = assetResults.firstObject?.location?.coordinate
+                }
+                else {
+                    self.parent.coordinate = nil
+                    print("DEBUG: Error getting asset identifier.")
                 }
             }
             self.parent.presentationMode.wrappedValue.dismiss()

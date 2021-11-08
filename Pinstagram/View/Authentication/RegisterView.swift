@@ -12,13 +12,18 @@ struct RegisterView: View {
     @State private var password = ""
     @State private var username = ""
     @State private var selectedImage: UIImage?
+    
     @EnvironmentObject var viewModel: AuthViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     @State private var shouldShowAlert = false
     @State var errorMessage: String?
+    
+    @State var isPickerPresented = false
+    
     @State var isLoading = false
     @State var isButtonDisabled = false
-    @State var isPickerPresented = false
+    
 
     var body: some View {
         ZStack {
@@ -55,7 +60,7 @@ struct RegisterView: View {
                 })
                 .padding(.bottom)
                 .sheet(isPresented: $isPickerPresented) {
-                    PhotoPicker(image: $selectedImage)
+                    PhotoPicker(image: $selectedImage, coordinate: .constant(nil))
                 }
                 
                 CustomTextField(text: $email, placeholder: "Email", imageName: "envelope.fill", isSecure: false)
