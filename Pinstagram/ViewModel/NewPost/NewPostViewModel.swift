@@ -9,30 +9,22 @@ import Foundation
 import SwiftUI
 import MapKit
 
-enum LocationDescriptionType {
-    case country, city, flag, comma
-}
-
 class NewPostViewModel: ObservableObject {
-    @Published var placeDescription = ""
+    @Published var city: String?
+    @Published var country: String?
+    @Published var flag: String?
     
-    func getLocationDescription(fromCoordinate coordinate: CLLocationCoordinate2D?, types: [LocationDescriptionType]) {
+    func getLocationDescription(fromCoordinate coordinate: CLLocationCoordinate2D?) {
+        self.city = nil
+        self.country = nil
+        self.flag = nil
+        
         getPlacemark(fromCoordinate: coordinate) { placemark in
             guard let placemark = placemark else { return }
-            
-            self.placeDescription = ""
-            for type in types {
-                switch type {
-                case .city:
-                    self.placeDescription += placemark.locality ?? ""
-                case .country:
-                    self.placeDescription += placemark.country ?? ""
-                case .flag:
-                    self.placeDescription += self.countryFlag(isoCountryCode: placemark.isoCountryCode) ?? ""
-                case .comma:
-                    self.placeDescription += ", "
-                }
-            }
+            guard let city = placemark.locality, let country = placemark.country, let flag = self.countryFlag(isoCountryCode: placemark.isoCountryCode) else { return }
+            self.city = city
+            self.country = country
+            self.flag = flag
         }
     }
     

@@ -10,7 +10,7 @@ import SwiftUI
 struct WebImage: View {
     var url: URL?
     @ObservedObject var imageLoader = ImageLoader()
-    @State var image = UIImage()
+    @State var image: UIImage?
     
     init(url: URL?) {
         self.url = url
@@ -26,14 +26,20 @@ struct WebImage: View {
             }
         }
         else {
-            Image(uiImage: image)
-                .resizable()
-                .onAppear {
-                    imageLoader.loadImage(fromURL: url)
-                }
-                .onReceive(imageLoader.$image) { image in
-                    self.image = image
-                }
+            if let image = image {
+                Image(uiImage: image)
+                    .resizable()
+                    .onAppear {
+                        imageLoader.loadImage(fromURL: url)
+                    }
+                    .onReceive(imageLoader.$image) { image in
+                        self.image = image
+                    }
+            }
+            else {
+                ProgressView()
+                    .progressViewStyle(CustomProgressStyle(size: 18, isColorSchemeConsidered: true))
+            }
         }
     }
 }

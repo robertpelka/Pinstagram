@@ -18,7 +18,7 @@ struct NewPostView: View {
     
     @State private var shouldShowAlert = false
     @State var errorMessage: String?
-    @State var locationText = "Detected place: "
+    @State var requestAuthorizationStatus: PHAuthorizationStatus?
     
     @State var isPickerPresented = false
     
@@ -51,8 +51,7 @@ struct NewPostView: View {
                         PhotoPicker(image: $selectedImage, coordinate: $coordinate)
                     }
                     .onChange(of: selectedImage) { _ in
-                        viewModel.placeDescription = "None"
-                        viewModel.getLocationDescription(fromCoordinate: coordinate, types: [.city, .comma, .country, .flag])
+                        viewModel.getLocationDescription(fromCoordinate: coordinate)
                     }
                     
                     TextEditor(text: $description)
@@ -67,15 +66,30 @@ struct NewPostView: View {
                 }
                 .padding([.top, .horizontal])
                 
-                Group {
-                    Text(locationText)
+                if requestAuthorizationStatus == .denied {
+                    Text("Please grant access to the photos.")
                         .font(.system(size: 16, weight: .regular))
-                    +
-                    Text(viewModel.placeDescription)
-                        .font(.system(size: 16, weight: .medium))
+                        .padding()
                 }
-                .padding()
-                
+                else {
+                    if let city = viewModel.city, let country = viewModel.country, let flag = viewModel.flag {
+                        Group {
+                            Text("Detected place: ")
+                                .font(.system(size: 16, weight: .regular))
+                            +
+                            Text(city + ", " + country + flag)
+                                .font(.system(size: 16, weight: .medium))
+                        }
+                        .padding(.vertical)
+                    }
+                    else {
+                        Text("Detected place: ")
+                            .font(.system(size: 16, weight: .regular))
+                        +
+                        Text("None")
+                            .font(.system(size: 16, weight: .medium))
+                    }
+                }
                 
                 Button(action: {
                     if selectedImage == nil {
@@ -113,12 +127,7 @@ struct NewPostView: View {
         }
         .onAppear {
             PHPhotoLibrary.requestAuthorization { status in
-                if status == .denied {
-                    locationText = "Please grant access to the photos."
-                }
-                else {
-                    locationText = "Detected place: "
-                }
+                requestAuthorizationStatus = status
             }
         }
     }
