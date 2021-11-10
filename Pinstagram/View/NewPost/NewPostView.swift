@@ -9,6 +9,7 @@ import SwiftUI
 import PhotosUI
 
 struct NewPostView: View {
+    @Binding var tabSelection: Int
     @State var selectedImage: UIImage?
     @State var coordinate: CLLocationCoordinate2D?
     @State var description = "Description..."
@@ -92,21 +93,32 @@ struct NewPostView: View {
                 }
                 
                 Button(action: {
-                    if selectedImage == nil {
+                    guard let image = selectedImage else {
                         shouldShowAlert = true
                         errorMessage = "Press plus button to add a picture."
+                        return
                     }
-                    else if !isEdited || description == "" {
-                        shouldShowAlert = true
-                        errorMessage = "Please add description."
-                    }
-                    else if coordinate == nil {
+                    guard let coordinate = coordinate, let city = viewModel.city, let country = viewModel.country, let flag = viewModel.flag else {
                         shouldShowAlert = true
                         errorMessage = "We can not determine where the photo was taken."
+                        return
+                    }
+                    if !isEdited || description == "" {
+                        shouldShowAlert = true
+                        errorMessage = "Please add description."
                     }
                     else {
                         isLoading = true
                         isButtonDisabled = true
+                        viewModel.uploadPost(image: image, coordinate: coordinate, city: city, country: country, flag: flag) {
+                            self.coordinate = nil
+                            self.selectedImage = nil
+                            self.description = "Description..."
+                            self.isEdited = false
+                            self.isLoading = false
+                            self.isButtonDisabled = false
+                            self.tabSelection = 4
+                        }
                     }
                 }, label: {
                     PrimaryButton(text: "Add Post", isLoading: $isLoading)
@@ -135,6 +147,6 @@ struct NewPostView: View {
 
 struct NewPostView_Previews: PreviewProvider {
     static var previews: some View {
-        NewPostView()
+        NewPostView(tabSelection: .constant(0))
     }
 }

@@ -17,5 +17,6 @@ struct K {
     
     struct Collections {
         static let users = Firestore.firestore().collection("users")
+        static let posts = Firestore.firestore().collection("posts")
     }
 }

@@ -8,11 +8,29 @@
 import Foundation
 import SwiftUI
 import MapKit
+import Firebase
 
 class NewPostViewModel: ObservableObject {
     @Published var city: String?
     @Published var country: String?
     @Published var flag: String?
+    
+    func uploadPost(image: UIImage, coordinate: CLLocationCoordinate2D, city: String, country: String, flag: String, completion: @escaping () -> ()) {
+        guard let currentUserID = AuthViewModel.shared.currentUser?.id else { return }
+        let postID = UUID().uuidString
+        
+        ImageUploader.uploadImage(image: image, fileName: postID, type: .post) { imageURL in
+            let post = Post(id: postID, image: imageURL, ownerID: currentUserID, timestamp: Timestamp(date: Date()), longitude: coordinate.longitude, latitude: coordinate.latitude, city: city, country: country, flag: flag)
+            do {
+                try K.Collections.posts.document(postID).setData(from: post)
+            }
+            catch let error {
+                print("DEBUG: Error uploading post data: \(error.localizedDescription)")
+                return
+            }
+            completion()
+        }
+    }
     
     func getLocationDescription(fromCoordinate coordinate: CLLocationCoordinate2D?) {
         self.city = nil

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @State private var selection = 0
+    @State var selection = 0
     @State var currentUser: User
     
     var body: some View {
@@ -27,7 +27,7 @@ struct MainTabView: View {
                 }
                 .tag(1)
             
-            NewPostView()
+            NewPostView(tabSelection: $selection)
                 .tabItem {
                     let imageName = (selection == 2) ? "plus.square.fill" : "plus.square"
                     Icon(imageName: imageName)
