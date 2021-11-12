@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct PostGrid: View {
+    var posts = [Post]()
+    
     var body: some View {
         LazyVGrid(columns: [GridItem(spacing: 2), GridItem(spacing: 2), GridItem(spacing: 2)], alignment: .center, spacing: 2, content: {
-            ForEach(1..<12) { _ in
+            ForEach(posts) { post in
                 Color.clear
                     .aspectRatio(contentMode: .fill)
                     .overlay(
-                        Image("postImage")
-                            .resizable()
+                        WebImage(url: URL(string: post.image))
                             .scaledToFill()
                     )
                     .clipped()

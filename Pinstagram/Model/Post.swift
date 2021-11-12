@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 
-struct Post: Codable {
+struct Post: Codable, Identifiable {
     let id: String
     let image: String
     let ownerID: String

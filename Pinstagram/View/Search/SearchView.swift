@@ -11,6 +11,8 @@ struct SearchView: View {
     @State var searchText = ""
     @State var isEditing = false
     
+    @ObservedObject var viewModel = SearchViewModel()
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading, spacing: 0) {
@@ -38,7 +40,7 @@ struct SearchView: View {
                         }
                     }
                     else {
-                        PostGrid()
+                        PostGrid(posts: viewModel.posts)
                     }
                 }
             }
