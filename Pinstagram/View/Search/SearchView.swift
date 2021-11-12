@@ -18,21 +18,23 @@ struct SearchView: View {
             VStack(alignment: .leading, spacing: 0) {
                 SearchBar(searchText: $searchText, isEditing: $isEditing)
                     .padding(.vertical, 15)
+                    .onChange(of: searchText) { _ in
+                        viewModel.fetchUsers(withName: searchText)
+                    }
                 
                 ScrollView {
                     if isEditing {
                         LazyVStack(alignment: .leading) {
-                            ForEach(1..<10) { _ in
+                            ForEach(viewModel.users) { user in
                                 HStack {
-                                    Image("profileImage")
-                                        .resizable()
+                                    WebImage(url: URL(string: user.profileImage))
                                         .scaledToFill()
                                         .frame(width: 48, height: 48)
                                         .clipShape(Circle())
                                         .padding(.leading, 10)
                                         .padding(.trailing, 2)
                                     
-                                    Text("Andrew")
+                                    Text(user.username)
                                         .font(.system(size: 18, weight: .semibold))
                                         .padding(.vertical, 18)
                                 }
