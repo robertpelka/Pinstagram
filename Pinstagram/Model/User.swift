@@ -19,4 +19,5 @@ struct User: Codable, Identifiable {
     var isCurrentUser: Bool {
         return AuthViewModel.shared.currentUser?.id == self.id
     }
+    var isFollowed: Bool?
 }

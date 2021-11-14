@@ -41,10 +41,9 @@ class SearchViewModel: ObservableObject {
     }
     
     func fetchUsers(withName name: String) {
-        print("PRINT: FetchUsers")
         K.Collections.users.whereField("username", isGreaterThanOrEqualTo: name).whereField("username", isLessThan: name + "z").getDocuments { snapshot, error in
             if let error = error {
-                print("DEBIG: Error getting users snapshot: \(error.localizedDescription)")
+                print("DEBUG: Error getting users snapshot: \(error.localizedDescription)")
                 return
             }
             if let documents = snapshot?.documents {

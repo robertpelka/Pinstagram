@@ -26,17 +26,23 @@ struct SearchView: View {
                     if isEditing {
                         LazyVStack(alignment: .leading) {
                             ForEach(viewModel.users) { user in
-                                HStack {
-                                    WebImage(url: URL(string: user.profileImage))
-                                        .scaledToFill()
-                                        .frame(width: 48, height: 48)
-                                        .clipShape(Circle())
-                                        .padding(.leading, 10)
-                                        .padding(.trailing, 2)
-                                    
-                                    Text(user.username)
-                                        .font(.system(size: 18, weight: .semibold))
-                                        .padding(.vertical, 18)
+                                NavigationLink {
+                                    ProfileView(viewModel: ProfileViewModel(userID: user.id))
+                                } label: {
+                                    HStack {
+                                        WebImage(url: URL(string: user.profileImage))
+                                            .scaledToFill()
+                                            .frame(width: 48, height: 48)
+                                            .clipShape(Circle())
+                                            .padding(.leading, 10)
+                                            .padding(.trailing, 2)
+                                        
+                                        Text(user.username)
+                                            .font(.system(size: 18, weight: .semibold))
+                                            .padding(.vertical, 18)
+                                        
+                                        Spacer()
+                                    }
                                 }
                             }
                         }
