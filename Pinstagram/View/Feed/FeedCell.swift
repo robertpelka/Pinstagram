@@ -6,30 +6,54 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct FeedCell: View {
+    @ObservedObject var viewModel: FeedCellViewModel
+    
+    init(viewModel: FeedCellViewModel) {
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                HStack {
-                    WebImage(url: URL(string: ""))
-                        .scaledToFill()
-                        .frame(width: 40, height: 40)
-                        .clipShape(Circle())
-                        .padding(.leading, 10)
-                        .padding(.trailing, 5)
+                HStack(spacing: 0) {
+                    if let postOwner = viewModel.post.owner {
+                        NavigationLink {
+                            ProfileView(viewModel: ProfileViewModel(user: postOwner))
+                        } label: {
+                            WebImage(url: URL(string: viewModel.post.owner?.profileImage ?? ""))
+                                .scaledToFill()
+                                .frame(width: 40, height: 40)
+                                .clipShape(Circle())
+                                .padding(.leading, 10)
+                                .padding(.trailing, 0)
+                            
+                            Text(viewModel.post.owner?.username ?? "")
+                                .font(.system(size: 16, weight: .semibold))
+                        }
+                    }
+                    else {
+                        WebImage(url: URL(string: viewModel.post.owner?.profileImage ?? ""))
+                            .scaledToFill()
+                            .frame(width: 40, height: 40)
+                            .clipShape(Circle())
+                            .padding(.leading, 10)
+                            .padding(.trailing, 0)
+                        
+                        Text(viewModel.post.owner?.username ?? "")
+                            .font(.system(size: 16, weight: .semibold))
+                    }
                     
-                    Text("Andrew")
-                        .font(.system(size: 16, weight: .semibold))
-                        +
-                        Text(" was in ")
+                    Text(" was in ")
                         .font(.system(size: 16, weight: .regular))
-                        +
-                        Text("France 🇫🇷")
+                    +
+                    Text(viewModel.post.country + viewModel.post.flag)
                         .font(.system(size: 16, weight: .semibold))
                 }
                 
-                WebImage(url: URL(string: ""))
+                WebImage(url: URL(string: viewModel.post.image))
                     .scaledToFill()
                     .frame(maxWidth: .infinity, minHeight: UIScreen.main.bounds.width, maxHeight: 500)
                     .fixedSize(horizontal: false, vertical: true)
@@ -42,7 +66,7 @@ struct FeedCell: View {
                         .font(.system(size: 26, weight: .light))
                     Spacer()
                     Image("pin")
-                    Text("Paris, France")
+                    Text(viewModel.post.city + ", " + viewModel.post.country)
                         .font(.system(size: 16, weight: .regular))
                 }
                 .padding(.horizontal, 10)
@@ -53,10 +77,10 @@ struct FeedCell: View {
                     .padding(.leading, 10)
                 
                 Group {
-                    Text("Andrew")
+                    Text(viewModel.post.owner?.username ?? "")
                         .font(.system(size: 16, weight: .semibold))
-                        +
-                        Text(" This place was Amazing. Once you reach the place you will get astonished by the beauty of everything.")
+                    +
+                    Text(" " + viewModel.post.description)
                         .font(.system(size: 16, weight: .regular))
                 }
                 .padding(.horizontal, 10)
@@ -75,6 +99,6 @@ struct FeedCell: View {
 
 struct FeedCell_Previews: PreviewProvider {
     static var previews: some View {
-        FeedCell()
+        FeedCell(viewModel: FeedCellViewModel(post: Post(id: "", image: "", description: "", ownerID: "", timestamp: Timestamp(), longitude: 0, latitude: 0, city: "", country: "", flag: "")))
     }
 }

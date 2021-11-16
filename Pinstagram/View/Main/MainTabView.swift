@@ -41,7 +41,7 @@ struct MainTabView: View {
                 }
                 .tag(3)
             
-            ProfileView(viewModel: ProfileViewModel(userID: currentUser.id))
+            ProfileView(viewModel: ProfileViewModel(user: currentUser))
                 .tabItem {
                     let imageName = (selection == 4) ? "person.fill" : "person"
                     Icon(imageName: imageName)

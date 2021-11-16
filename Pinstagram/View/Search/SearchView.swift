@@ -27,7 +27,7 @@ struct SearchView: View {
                         LazyVStack(alignment: .leading) {
                             ForEach(viewModel.users) { user in
                                 NavigationLink {
-                                    ProfileView(viewModel: ProfileViewModel(userID: user.id))
+                                    ProfileView(viewModel: ProfileViewModel(user: user))
                                 } label: {
                                     HStack {
                                         WebImage(url: URL(string: user.profileImage))

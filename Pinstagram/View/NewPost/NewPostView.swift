@@ -110,7 +110,7 @@ struct NewPostView: View {
                     else {
                         isLoading = true
                         isButtonDisabled = true
-                        viewModel.uploadPost(image: image, coordinate: coordinate, city: city, country: country, flag: flag) {
+                        viewModel.uploadPost(image: image, description: description, coordinate: coordinate, city: city, country: country, flag: flag) {
                             self.coordinate = nil
                             self.selectedImage = nil
                             self.description = "Description..."

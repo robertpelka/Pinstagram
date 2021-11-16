@@ -11,6 +11,7 @@ import Firebase
 struct Post: Codable, Identifiable {
     let id: String
     let image: String
+    let description: String
     let ownerID: String
     var numberOfLikes = 0
     let timestamp: Timestamp
@@ -19,4 +20,6 @@ struct Post: Codable, Identifiable {
     let city: String
     let country: String
     let flag: String
+    
+    var owner: User?
 }

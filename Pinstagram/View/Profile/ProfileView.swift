@@ -7,10 +7,15 @@
 
 import SwiftUI
 import MapKit
+import Firebase
 
 struct ProfileView: View {
     @ObservedObject var viewModel: ProfileViewModel
     @State var bio: String = ""
+    
+    init(viewModel: ProfileViewModel) {
+        self.viewModel = viewModel
+    }
     
     let places = [
         Place(latitude: 30.033333, longitude: 31.233334, image: "postImage"),
@@ -26,16 +31,16 @@ struct ProfileView: View {
         NavigationView {
             VStack(spacing: 0) {
                 HStack {
-                    WebImage(url: URL(string: viewModel.user?.profileImage ?? ""))
+                    WebImage(url: URL(string: viewModel.user.profileImage))
                         .scaledToFill()
                         .frame(width: 75, height: 75)
                         .clipShape(Circle())
                         .padding(.trailing, 5)
                     
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(viewModel.user?.username ?? "")
+                        Text(viewModel.user.username)
                             .font(.system(size: 18, weight: .semibold))
-                        Text(viewModel.user?.bio ?? "")
+                        Text(viewModel.user.bio)
                             .font(.system(size: 16, weight: .regular))
                     }
                     
@@ -47,7 +52,7 @@ struct ProfileView: View {
                     VStack {
                         Text("Countries")
                             .font(.system(size: 18, weight: .semibold))
-                        Text(String(viewModel.user?.visitedCountries ?? 0))
+                        Text(String(viewModel.user.visitedCountries))
                             .font(.system(size: 18, weight: .regular))
                     }
                     .frame(maxWidth: .infinity)
@@ -55,7 +60,7 @@ struct ProfileView: View {
                     VStack {
                         Text("Followers")
                             .font(.system(size: 18, weight: .semibold))
-                        Text(String(viewModel.user?.followers ?? 0))
+                        Text(String(viewModel.user.followers))
                             .font(.system(size: 18, weight: .regular))
                     }
                     .frame(maxWidth: .infinity)
@@ -63,14 +68,14 @@ struct ProfileView: View {
                     VStack {
                         Text("Following")
                             .font(.system(size: 18, weight: .semibold))
-                        Text(String(viewModel.user?.following ?? 0))
+                        Text(String(viewModel.user.following))
                             .font(.system(size: 18, weight: .regular))
                     }
                     .frame(maxWidth: .infinity)
                 }
                 .padding(.vertical, 2)
                 
-                if viewModel.user?.isCurrentUser == true {
+                if viewModel.user.isCurrentUser {
                     NavigationLink {
                         EditProfileView(bio: $bio)
                             .navigationBarBackButtonHidden(true)
@@ -78,15 +83,13 @@ struct ProfileView: View {
                         SecondaryButton(text: "Edit Profile")
                     }
                 }
-                else if viewModel.user?.isFollowed == true {
+                else if viewModel.user.isFollowed == true {
                     Button(action: {
-                        if let userID = viewModel.user?.id {
-                            UserService.unfollowUser(withID: userID) { error in
-                                if let error = error {
-                                    print("DEBUG: Error unfollowing user: \(error.localizedDescription)")
-                                }
-                                viewModel.user?.isFollowed = false
+                        UserService.unfollowUser(withID: viewModel.user.id) { error in
+                            if let error = error {
+                                print("DEBUG: Error unfollowing user: \(error.localizedDescription)")
                             }
+                            viewModel.user.isFollowed = false
                         }
                     }, label: {
                         SecondaryButton(text: "Unfollow")
@@ -94,13 +97,11 @@ struct ProfileView: View {
                 }
                 else {
                     Button(action: {
-                        if let userID = viewModel.user?.id {
-                            UserService.followUser(withID: userID) { error in
-                                if let error = error {
-                                    print("DEBUG: Error following user: \(error.localizedDescription)")
-                                }
-                                viewModel.user?.isFollowed = true
+                        UserService.followUser(withID: viewModel.user.id) { error in
+                            if let error = error {
+                                print("DEBUG: Error following user: \(error.localizedDescription)")
                             }
+                            viewModel.user.isFollowed = true
                         }
                     }, label: {
                         PrimaryButton(text: "Follow", isLoading: .constant(false))
@@ -111,7 +112,7 @@ struct ProfileView: View {
                     annotationItems: places) { place in
                     MapAnnotation(coordinate: place.coordinate) {
                         NavigationLink(
-                            destination: FeedCell(),
+                            destination: Text("FeedCell"),
                             label: {
                                 ZStack {
                                     Image("pin")
@@ -133,7 +134,7 @@ struct ProfileView: View {
             .navigationTitle("Profile")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                if viewModel.user?.isCurrentUser == true {
+                if viewModel.user.isCurrentUser {
                     Button("Logout") {
                         AuthViewModel.shared.logOut()
                     }
@@ -146,7 +147,7 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(viewModel: ProfileViewModel(userID: ""))
+        ProfileView(viewModel: ProfileViewModel(user: User(id: "", username: "Username", profileImage: "")))
     }
 }
 
