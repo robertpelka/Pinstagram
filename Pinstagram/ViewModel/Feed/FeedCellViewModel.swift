@@ -10,6 +10,14 @@ import Foundation
 class FeedCellViewModel: ObservableObject {
     @Published var post: Post
     
+    var timestampString: String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.second, .minute, .hour, .day, .weekOfMonth, .year]
+        formatter.maximumUnitCount = 1
+        formatter.unitsStyle = .abbreviated
+        return formatter.string(from: post.timestamp.dateValue(), to: Date()) ?? "some time"
+    }
+    
     init(post: Post) {
         self.post = post
         fetchPostOwner()
@@ -32,4 +40,5 @@ class FeedCellViewModel: ObservableObject {
             }
         }
     }
+
 }

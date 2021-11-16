@@ -22,4 +22,5 @@ struct Post: Codable, Identifiable {
     let flag: String
     
     var owner: User?
+    var timestampString: String?
 }

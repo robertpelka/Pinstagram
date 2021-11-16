@@ -86,7 +86,7 @@ struct FeedCell: View {
                 .padding(.horizontal, 10)
                 .padding(.top, 5)
                 
-                Text("2d ago")
+                Text(viewModel.timestampString + " ago")
                     .font(.system(size: 14, weight: .light))
                     .foregroundColor(.secondary)
                     .padding(.leading, 10)

@@ -14,8 +14,14 @@ struct FeedView: View {
         NavigationView {
             ScrollView {
                 LazyVStack {
-                    ForEach(viewModel.posts) { post in
-                        FeedCell(viewModel: FeedCellViewModel(post: post))
+                    if viewModel.posts.isEmpty {
+                        Text("Follow some users to see posts here.")
+                            .padding(.top, 50)
+                    }
+                    else {
+                        ForEach(viewModel.posts) { post in
+                            FeedCell(viewModel: FeedCellViewModel(post: post))
+                        }
                     }
                 }
             }

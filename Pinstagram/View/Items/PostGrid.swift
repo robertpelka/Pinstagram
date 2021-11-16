@@ -13,13 +13,17 @@ struct PostGrid: View {
     var body: some View {
         LazyVGrid(columns: [GridItem(spacing: 2), GridItem(spacing: 2), GridItem(spacing: 2)], alignment: .center, spacing: 2, content: {
             ForEach(posts) { post in
-                Color.clear
-                    .aspectRatio(contentMode: .fill)
-                    .overlay(
-                        WebImage(url: URL(string: post.image))
-                            .scaledToFill()
-                    )
-                    .clipped()
+                NavigationLink {
+                    FeedCell(viewModel: FeedCellViewModel(post: post))
+                } label: {
+                    Color.clear
+                        .aspectRatio(contentMode: .fill)
+                        .overlay(
+                            WebImage(url: URL(string: post.image))
+                                .scaledToFill()
+                        )
+                        .clipped()
+                }
             }
         })
     }

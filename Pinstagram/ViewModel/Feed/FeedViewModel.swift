@@ -16,22 +16,24 @@ class FeedViewModel: ObservableObject {
     
     func fetchFollowedUsersPosts() {
         fetchFollowedUsersIDS { followedUsersIDS in
-            K.Collections.posts.whereField("ownerID", in: followedUsersIDS).order(by: "timestamp", descending: true).getDocuments { snapshot, error in
-                if let error = error {
-                    print("DEBUG: Error getting posts snapshot: \(error.localizedDescription)")
-                    return
-                }
-                if let documents = snapshot?.documents {
-                    for document in documents {
-                        do {
-                            let post = try document.data(as: Post.self)
-                            if let post = post {
-                                self.posts.append(post)
+            if !followedUsersIDS.isEmpty {
+                K.Collections.posts.whereField("ownerID", in: followedUsersIDS).order(by: "timestamp", descending: true).getDocuments { snapshot, error in
+                    if let error = error {
+                        print("DEBUG: Error getting posts snapshot: \(error.localizedDescription)")
+                        return
+                    }
+                    if let documents = snapshot?.documents {
+                        for document in documents {
+                            do {
+                                let post = try document.data(as: Post.self)
+                                if let post = post {
+                                    self.posts.append(post)
+                                }
                             }
-                        }
-                        catch let error {
-                            print("DEBUG: Error fetching posts: \(error.localizedDescription)")
-                            return
+                            catch let error {
+                                print("DEBUG: Error fetching posts: \(error.localizedDescription)")
+                                return
+                            }
                         }
                     }
                 }
