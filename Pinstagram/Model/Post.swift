@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import MapKit
 
 struct Post: Codable, Identifiable {
     let id: String
@@ -23,4 +24,7 @@ struct Post: Codable, Identifiable {
     
     var owner: User?
     var timestampString: String?
+    var coordinate: CLLocationCoordinate2D? {
+        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
 }

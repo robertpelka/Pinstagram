@@ -17,12 +17,6 @@ struct ProfileView: View {
         self.viewModel = viewModel
     }
     
-    let places = [
-        Place(latitude: 30.033333, longitude: 31.233334, image: "postImage"),
-        Place(latitude:  52.237049, longitude: 21.017532, image: "profileImage"),
-        Place(latitude: 48.864716, longitude: 2.349014, image: "postImage")
-    ]
-    
     @State var coordinateRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 50, longitude: 25),
         span: MKCoordinateSpan(latitudeDelta: 80.0, longitudeDelta: 80.0))
@@ -108,19 +102,17 @@ struct ProfileView: View {
                     })
                 }
                 
-                Map(coordinateRegion: $coordinateRegion,
-                    annotationItems: places) { place in
-                    MapAnnotation(coordinate: place.coordinate) {
+                Map(coordinateRegion: $coordinateRegion, annotationItems: viewModel.posts) { post in
+                    MapAnnotation(coordinate: post.coordinate ?? CLLocationCoordinate2D()) {
                         NavigationLink(
-                            destination: Text("FeedCell"),
+                            destination: FeedCell(viewModel: FeedCellViewModel(post: post)),
                             label: {
                                 ZStack {
                                     Image("pin")
                                         .resizable()
                                         .scaledToFill()
                                         .frame(height: 60)
-                                    Image(place.image)
-                                        .resizable()
+                                    WebImage(url: URL(string: post.image))
                                         .scaledToFill()
                                         .frame(width: 30, height: 30)
                                         .clipShape(Circle())
@@ -148,16 +140,5 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView(viewModel: ProfileViewModel(user: User(id: "", username: "Username", profileImage: "")))
-    }
-}
-
-struct Place: Identifiable {
-    var id = UUID()
-    let latitude: Double
-    let longitude: Double
-    let image: String
-    
-    var coordinate: CLLocationCoordinate2D {
-        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }
