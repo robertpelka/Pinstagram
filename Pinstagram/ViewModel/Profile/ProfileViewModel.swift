@@ -7,10 +7,16 @@
 
 import Foundation
 import Firebase
+import MapKit
 
 class ProfileViewModel: ObservableObject {
     @Published var user: User
-    @Published var posts = [Post]()
+    @Published var posts = [Post]() {
+        didSet {
+            calculateCoordinateRegion()
+        }
+    }
+    @Published var coordinateRegion = MKCoordinateRegion()
     
     init(user: User) {
         self.user = user
@@ -53,6 +59,33 @@ class ProfileViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func calculateCoordinateRegion() {
+        var maxLatitude: Double = -180
+        var minLatitude: Double = 180
+        var maxLongitude: Double = -180
+        var minLongitude: Double = 180
+        
+        for post in posts {
+            if post.latitude > maxLatitude {
+                maxLatitude = post.latitude
+            }
+            if post.latitude < minLatitude {
+                minLatitude = post.latitude
+            }
+            if post.longitude > maxLongitude {
+                maxLongitude = post.longitude
+            }
+            if post.longitude < minLongitude {
+                minLongitude = post.longitude
+            }
+        }
+        
+        coordinateRegion = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: (maxLatitude + minLatitude) / 2, longitude: (maxLongitude + minLongitude) / 2),
+            span: MKCoordinateSpan(latitudeDelta: (maxLatitude - minLatitude) * 3, longitudeDelta: (maxLongitude - minLongitude) * 3)
+        )
     }
     
 }

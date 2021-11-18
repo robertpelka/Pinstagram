@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-import MapKit
 import Firebase
+import MapKit
 
 struct ProfileView: View {
     @ObservedObject var viewModel: ProfileViewModel
@@ -16,10 +16,6 @@ struct ProfileView: View {
     init(viewModel: ProfileViewModel) {
         self.viewModel = viewModel
     }
-    
-    @State var coordinateRegion = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 50, longitude: 25),
-        span: MKCoordinateSpan(latitudeDelta: 80.0, longitudeDelta: 80.0))
     
     var body: some View {
         NavigationView {
@@ -102,7 +98,7 @@ struct ProfileView: View {
                     })
                 }
                 
-                Map(coordinateRegion: $coordinateRegion, annotationItems: viewModel.posts) { post in
+                Map(coordinateRegion: $viewModel.coordinateRegion, annotationItems: viewModel.posts) { post in
                     MapAnnotation(coordinate: post.coordinate ?? CLLocationCoordinate2D()) {
                         NavigationLink(
                             destination: FeedCell(viewModel: FeedCellViewModel(post: post)),
