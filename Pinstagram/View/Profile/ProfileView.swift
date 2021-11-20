@@ -11,7 +11,6 @@ import MapKit
 
 struct ProfileView: View {
     @ObservedObject var viewModel: ProfileViewModel
-    @State var bio: String = ""
     
     init(viewModel: ProfileViewModel) {
         self.viewModel = viewModel
@@ -67,7 +66,7 @@ struct ProfileView: View {
                 
                 if viewModel.user.isCurrentUser {
                     NavigationLink {
-                        EditProfileView(bio: $bio)
+                        EditProfileView(bio: $viewModel.user.bio, profileImageURL: $viewModel.user.profileImage)
                             .navigationBarBackButtonHidden(true)
                     } label: {
                         SecondaryButton(text: "Edit Profile")
