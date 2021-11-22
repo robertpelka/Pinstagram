@@ -98,7 +98,7 @@ struct NewPostView: View {
                         errorMessage = "Press plus button to add a picture."
                         return
                     }
-                    guard let coordinate = coordinate, let city = viewModel.city, let country = viewModel.country, let flag = viewModel.flag else {
+                    guard let coordinate = coordinate, let city = viewModel.city, let country = viewModel.country, let flag = viewModel.flag, let code = viewModel.code else {
                         shouldShowAlert = true
                         errorMessage = "We can not determine where the photo was taken."
                         return
@@ -110,7 +110,7 @@ struct NewPostView: View {
                     else {
                         isLoading = true
                         isButtonDisabled = true
-                        viewModel.uploadPost(image: image, description: description, coordinate: coordinate, city: city, country: country, flag: flag) {
+                        viewModel.uploadPost(image: image, description: description, coordinate: coordinate, city: city, country: country, flag: flag, code: code) {
                             self.coordinate = nil
                             self.selectedImage = nil
                             self.description = "Description..."

@@ -14,8 +14,9 @@ class NewPostViewModel: ObservableObject {
     @Published var city: String?
     @Published var country: String?
     @Published var flag: String?
+    @Published var code: String?
     
-    func uploadPost(image: UIImage, description: String, coordinate: CLLocationCoordinate2D, city: String, country: String, flag: String, completion: @escaping () -> ()) {
+    func uploadPost(image: UIImage, description: String, coordinate: CLLocationCoordinate2D, city: String, country: String, flag: String, code: String, completion: @escaping () -> ()) {
         guard let currentUserID = AuthViewModel.shared.currentUser?.id else { return }
         let postID = UUID().uuidString
         
@@ -28,6 +29,7 @@ class NewPostViewModel: ObservableObject {
                 print("DEBUG: Error uploading post data: \(error.localizedDescription)")
                 return
             }
+            self.updateNumberOfVisitedCountries(withCountryCode: code)
             completion()
         }
     }
@@ -36,13 +38,15 @@ class NewPostViewModel: ObservableObject {
         self.city = nil
         self.country = nil
         self.flag = nil
+        self.code = nil
         
         getPlacemark(fromCoordinate: coordinate) { placemark in
             guard let placemark = placemark else { return }
-            guard let city = placemark.locality, let country = placemark.country, let flag = self.countryFlag(isoCountryCode: placemark.isoCountryCode) else { return }
+            guard let city = placemark.locality, let country = placemark.country, let flag = self.countryFlag(isoCountryCode: placemark.isoCountryCode), let code = placemark.isoCountryCode else { return }
             self.city = city
             self.country = country
             self.flag = flag
+            self.code = code
         }
     }
     
@@ -71,6 +75,33 @@ class NewPostViewModel: ObservableObject {
         }
         
         return " " + String(tempScalarView)
+    }
+    
+    func updateNumberOfVisitedCountries(withCountryCode code: String) {
+        guard let currentUserID = AuthViewModel.shared.currentUser?.id else { return }
+        
+        K.Collections.visitedCountries.document(currentUserID).collection("countryCodes").document(code).setData([:]) { error in
+            if let error = error {
+                print("DEBUG: Error adding country code to the list of visited countries: \(error.localizedDescription)")
+                return
+            }
+            K.Collections.visitedCountries.document(currentUserID).collection("countryCodes").getDocuments { snapshot, error in
+                if let error = error {
+                    print("DEBUG: Error fetching country codes: \(error.localizedDescription)")
+                    return
+                }
+                guard let numberOfVisitedCountries = snapshot?.count else {
+                    print("DEBUG: Error getting number of country code documents")
+                    return
+                }
+                K.Collections.users.document(currentUserID).updateData(["visitedCountries" : numberOfVisitedCountries]) { error in
+                    if let error = error {
+                        print("DEBUG: Error updating number of visited countries: \(error.localizedDescription)")
+                        return
+                    }
+                }
+            }
+        }
     }
     
 }
