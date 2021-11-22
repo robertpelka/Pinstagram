@@ -74,11 +74,9 @@ struct ProfileView: View {
                 }
                 else if viewModel.user.isFollowed == true {
                     Button(action: {
-                        UserService.unfollowUser(withID: viewModel.user.id) { error in
-                            if let error = error {
-                                print("DEBUG: Error unfollowing user: \(error.localizedDescription)")
-                            }
+                        UserService.unfollowUser(withID: viewModel.user.id) {
                             viewModel.user.isFollowed = false
+                            viewModel.user.followers -= 1
                         }
                     }, label: {
                         SecondaryButton(text: "Unfollow")
@@ -86,11 +84,9 @@ struct ProfileView: View {
                 }
                 else {
                     Button(action: {
-                        UserService.followUser(withID: viewModel.user.id) { error in
-                            if let error = error {
-                                print("DEBUG: Error following user: \(error.localizedDescription)")
-                            }
+                        UserService.followUser(withID: viewModel.user.id) {
                             viewModel.user.isFollowed = true
+                            viewModel.user.followers += 1
                         }
                     }, label: {
                         PrimaryButton(text: "Follow", isLoading: .constant(false))
