@@ -20,6 +20,5 @@ struct K {
         static let posts = Firestore.firestore().collection("posts")
         static let followers = Firestore.firestore().collection("followers")
         static let following = Firestore.firestore().collection("following")
-        static let visitedCountries = Firestore.firestore().collection("visitedCountries")
     }
 }

@@ -14,7 +14,9 @@ struct PostGrid: View {
         LazyVGrid(columns: [GridItem(spacing: 2), GridItem(spacing: 2), GridItem(spacing: 2)], alignment: .center, spacing: 2, content: {
             ForEach(posts) { post in
                 NavigationLink {
-                    FeedCell(viewModel: FeedCellViewModel(post: post))
+                    ScrollView {
+                        FeedCell(viewModel: FeedCellViewModel(post: post))
+                    }
                 } label: {
                     Color.clear
                         .aspectRatio(contentMode: .fill)

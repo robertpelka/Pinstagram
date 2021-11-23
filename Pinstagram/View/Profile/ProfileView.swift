@@ -96,7 +96,7 @@ struct ProfileView: View {
                 Map(coordinateRegion: $viewModel.coordinateRegion, annotationItems: viewModel.posts) { post in
                     MapAnnotation(coordinate: post.coordinate ?? CLLocationCoordinate2D()) {
                         NavigationLink(
-                            destination: FeedCell(viewModel: FeedCellViewModel(post: post)),
+                            destination: ScrollView { FeedCell(viewModel: FeedCellViewModel(post: post)) },
                             label: {
                                 ZStack {
                                     Image("pin")

@@ -80,12 +80,12 @@ class NewPostViewModel: ObservableObject {
     func updateNumberOfVisitedCountries(withCountryCode code: String) {
         guard let currentUserID = AuthViewModel.shared.currentUser?.id else { return }
         
-        K.Collections.visitedCountries.document(currentUserID).collection("countryCodes").document(code).setData([:]) { error in
+        K.Collections.users.document(currentUserID).collection("visitedCountries").document(code).setData([:]) { error in
             if let error = error {
                 print("DEBUG: Error adding country code to the list of visited countries: \(error.localizedDescription)")
                 return
             }
-            K.Collections.visitedCountries.document(currentUserID).collection("countryCodes").getDocuments { snapshot, error in
+            K.Collections.users.document(currentUserID).collection("visitedCountries").getDocuments { snapshot, error in
                 if let error = error {
                     print("DEBUG: Error fetching country codes: \(error.localizedDescription)")
                     return
