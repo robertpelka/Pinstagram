@@ -18,6 +18,7 @@ class EditProfileViewModel: ObservableObject {
                 if let error = error {
                     print("DEBUG: Error updating user profile image: \(error.localizedDescription)")
                 }
+                AuthViewModel.shared.fetchCurrentUser()
                 completion(imageURL)
             }
         }
@@ -30,6 +31,7 @@ class EditProfileViewModel: ObservableObject {
             if let error = error {
                 print("DEBUG: Error updating user bio: \(error.localizedDescription)")
             }
+            AuthViewModel.shared.fetchCurrentUser()
         }
     }
     

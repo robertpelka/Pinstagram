@@ -99,6 +99,7 @@ class NewPostViewModel: ObservableObject {
                         print("DEBUG: Error updating number of visited countries: \(error.localizedDescription)")
                         return
                     }
+                    AuthViewModel.shared.fetchCurrentUser()
                 }
             }
         }

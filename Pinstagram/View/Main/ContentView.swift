@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
         if viewModel.isUserLoggedChecked {
             if let currentUser = viewModel.currentUser {
-                MainTabView(currentUser: currentUser)
+                MainTabView(viewModel: MainTabViewModel(currentUser: currentUser))
             }
             else {
                 LoginView()
