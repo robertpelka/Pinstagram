@@ -60,8 +60,24 @@ struct FeedCell: View {
                     .clipped()
                 
                 HStack {
-                    Image(systemName: "heart")
-                        .font(.system(size: 26, weight: .light))
+                    Button {
+                        if viewModel.post.isLiked == true {
+                            viewModel.unlikePost()
+                        }
+                        else {
+                            viewModel.likePost()
+                        }
+                    } label: {
+                        if viewModel.post.isLiked == true {
+                            Image(systemName: "heart.fill")
+                                .foregroundColor(Color.red)
+                                .font(.system(size: 26, weight: .light))
+                        }
+                        else {
+                            Image(systemName: "heart")
+                                .font(.system(size: 26, weight: .light))
+                        }
+                    }
                     Image(systemName: "bubble.right")
                         .font(.system(size: 26, weight: .light))
                     Spacer()
@@ -72,7 +88,7 @@ struct FeedCell: View {
                 .padding(.horizontal, 10)
                 .padding(.vertical, 5)
                 
-                Text("128 likes")
+                Text(String(viewModel.post.numberOfLikes) + ((viewModel.post.numberOfLikes == 1) ? " like" : " likes"))
                     .font(.system(size: 16, weight: .semibold))
                     .padding(.leading, 10)
                 

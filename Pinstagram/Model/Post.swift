@@ -27,4 +27,5 @@ struct Post: Codable, Identifiable {
     var coordinate: CLLocationCoordinate2D? {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
+    var isLiked: Bool?
 }
