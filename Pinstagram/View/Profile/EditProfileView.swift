@@ -68,20 +68,30 @@ struct EditProfileView: View {
             
             Spacer()
             
-            Button(action: {
-                if let profileImage = selectedImage {
-                    viewModel.updateProfilePicture(image: profileImage) { imageURL in
-                        self.profileImageURL = imageURL
+            VStack(spacing: -15) {
+                Button(action: {
+                    if let profileImage = selectedImage {
+                        viewModel.updateProfilePicture(image: profileImage) { imageURL in
+                            self.profileImageURL = imageURL
+                        }
                     }
+                    if isBioChanged {
+                        viewModel.updateBio(bio: bio)
+                    }
+                    self.presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    PrimaryButton(text: "Save Changes", isLoading: .constant(false))
+                })
+            
+                Button {
+                    AuthViewModel.shared.fetchCurrentUser()
+                    self.presentationMode.wrappedValue.dismiss()
+                } label: {
+                    SecondaryButton(text: "Cancel")
                 }
-                if isBioChanged {
-                    viewModel.updateBio(bio: bio)
-                }
-                self.presentationMode.wrappedValue.dismiss()
-            }, label: {
-                PrimaryButton(text: "Save Changes", isLoading: .constant(false))
-                    .padding(.bottom)
-            })
+                .padding(.bottom)
+
+            }
         }
         .navigationTitle("Edit Profile")
         .navigationBarTitleDisplayMode(.inline)
