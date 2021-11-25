@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+enum NotificationType {
+    case like
+    case comment
+    case follow
+}
+
 struct NotificationCell: View {
     var type: NotificationType
     var notificationText: String {
@@ -70,8 +76,3 @@ struct NotificationCell_Previews: PreviewProvider {
     }
 }
 
-enum NotificationType {
-    case like
-    case comment
-    case follow
-}
