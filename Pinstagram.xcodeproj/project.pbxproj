@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		480C1EC22719F30400905E18 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C1EC12719F30400905E18 /* NotificationCell.swift */; };
 		481D7CC4274D914800284F6E /* MainTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D7CC3274D914800284F6E /* MainTabViewModel.swift */; };
+		481D7CCC274FC5BE00284F6E /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D7CCB274FC5BE00284F6E /* CommentCell.swift */; };
+		481D7CCE274FC60B00284F6E /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D7CCD274FC60B00284F6E /* CommentsView.swift */; };
 		4836ABBE2722B8D100D85328 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4836ABBD2722B8D100D85328 /* GoogleService-Info.plist */; };
 		4836ABC12722BD3A00D85328 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4836ABC02722BD3A00D85328 /* FirebaseAuth */; };
 		4836ABC32722BD3A00D85328 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4836ABC22722BD3A00D85328 /* FirebaseFirestore */; };
@@ -58,6 +60,8 @@
 /* Begin PBXFileReference section */
 		480C1EC12719F30400905E18 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		481D7CC3274D914800284F6E /* MainTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewModel.swift; sourceTree = "<group>"; };
+		481D7CCB274FC5BE00284F6E /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		481D7CCD274FC60B00284F6E /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		4836ABBD2722B8D100D85328 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4836ABC82723F25700D85328 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4836ABCB2723F5F900D85328 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -134,6 +138,15 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		481D7CC8274FB63500284F6E /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				481D7CCD274FC60B00284F6E /* CommentsView.swift */,
+				481D7CCB274FC5BE00284F6E /* CommentCell.swift */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
 		4836ABCA2723F5C600D85328 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +215,7 @@
 				485733C72715AE6600B19A34 /* NewPost */,
 				480C1EC3271A056C00905E18 /* Notifications */,
 				48864F05271F4AE9008E1EB2 /* Profile */,
+				481D7CC8274FB63500284F6E /* Comments */,
 				485733C4271448C200B19A34 /* Items */,
 			);
 			path = View;
@@ -445,10 +459,12 @@
 				480C1EC22719F30400905E18 /* NotificationCell.swift in Sources */,
 				48892103271C29D3000F37D2 /* Extensions.swift in Sources */,
 				485733C32714364D00B19A34 /* SearchBar.swift in Sources */,
+				481D7CCE274FC60B00284F6E /* CommentsView.swift in Sources */,
 				4894EDC62748C8D40061B44A /* EditProfileViewModel.swift in Sources */,
 				481D7CC4274D914800284F6E /* MainTabViewModel.swift in Sources */,
 				48E66774270CBF5200735A1C /* LoginView.swift in Sources */,
 				488CCFFE270F003C00875594 /* ResetPasswordView.swift in Sources */,
+				481D7CCC274FC5BE00284F6E /* CommentCell.swift in Sources */,
 				48864F09271F4B3B008E1EB2 /* EditProfileView.swift in Sources */,
 				486E570827394DB100F65BA1 /* Post.swift in Sources */,
 				488CD000271185F300875594 /* MainTabView.swift in Sources */,
