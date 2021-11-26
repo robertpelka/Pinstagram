@@ -77,9 +77,16 @@ struct FeedCell: View {
                             .font(.system(size: 26, weight: .light))
                     }
                 }
-                Image(systemName: "bubble.right")
-                    .font(.system(size: 26, weight: .light))
+                
+                NavigationLink {
+                    CommentsView(viewModel: CommentsViewModel(postID: viewModel.post.id))
+                } label: {
+                    Image(systemName: "bubble.right")
+                        .font(.system(size: 26, weight: .light))
+                }
+
                 Spacer()
+                
                 Image("pin")
                 Text(viewModel.post.city + ", " + viewModel.post.country)
                     .font(.system(size: 16, weight: .regular))

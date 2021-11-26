@@ -8,51 +8,88 @@
 import SwiftUI
 
 struct CommentsView: View {
-    @Binding var commentText: String
+    @State var commentText: String = ""
+    @ObservedObject var viewModel: CommentsViewModel
+    
+    @State private var shouldShowAlert = false
+    @State var errorMessage: String?
+    
+    init(viewModel: CommentsViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
-        NavigationView {
-            VStack {
-                ScrollView {
-                    LazyVStack(spacing: 22) {
-                        ForEach(1..<5) { _ in
-                            CommentCell()
+        VStack {
+            ScrollView {
+                LazyVStack(spacing: 22) {
+                    if viewModel.comments.isEmpty {
+                        Text("No comments yet. Be the first!")
+                            .padding(.top, 25)
+                    }
+                    else {
+                        ForEach(viewModel.comments) { comment in
+                            CommentCell(viewModel: CommentCellViewModel(comment: comment))
                         }
                     }
-                    .padding(.top)
                 }
+                .padding(.top)
+            }
+            
+            Spacer()
+            
+            Divider()
+            HStack(spacing: 12) {
+                WebImage(url: URL(string: AuthViewModel.shared.currentUser?.profileImage ?? ""))
+                    .scaledToFill()
+                    .clipShape(Circle())
+                    .frame(width: 36, height: 36)
+                
+                CommentTextField(commentText: $commentText)
                 
                 Spacer()
                 
-                Divider()
-                HStack(spacing: 12) {
-                    Image("profileImage")
-                        .resizable()
-                        .scaledToFill()
-                        .clipShape(Circle())
-                        .frame(width: 36, height: 36)
-                    
-                    TextField("Add a comment...", text: $commentText)
-                    
-                    Spacer()
-                    
+                Button {
+                    if commentText == "" {
+                        shouldShowAlert = true
+                        errorMessage = "Comment cannot be empty."
+                    }
+                    else {
+                        viewModel.postComment(withText: commentText) {
+                            self.hideKeyboard()
+                            commentText = ""
+                        }
+                    }
+                } label: {
                     Text("Post")
                         .font(.system(size: 18, weight: .medium))
                         .foregroundColor(Color.blue)
                 }
-                .padding(.horizontal)
-                .padding(.vertical, 2)
-                Divider()
             }
-            .navigationTitle("Comments")
-            .navigationBarTitleDisplayMode(.inline)
+            .padding(.horizontal)
+            .padding(.vertical, 2)
+            Divider()
         }
-        .accentColor(.primary)
+        .navigationTitle("Comments")
+        .navigationBarTitleDisplayMode(.inline)
+        .onTapGesture {
+            self.hideKeyboard()
+        }
+        .alert(isPresented: $shouldShowAlert) {
+            Alert(title: Text(errorMessage ?? "Error"), dismissButton: .default(Text("OK")))
+        }
     }
 }
 
 struct CommentsView_Previews: PreviewProvider {
     static var previews: some View {
-        CommentsView(commentText: .constant(""))
+        CommentsView(viewModel: CommentsViewModel.init(postID: ""))
+    }
+}
+
+struct CommentTextField: View {
+    @Binding var commentText: String
+    
+    var body: some View {
+        TextField("Add a comment...", text: $commentText)
     }
 }
