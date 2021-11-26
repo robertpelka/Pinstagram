@@ -41,12 +41,14 @@ struct MainTabView: View {
                 }
                 .tag(3)
             
-            ProfileView(viewModel: ProfileViewModel(user: viewModel.currentUser))
-                .tabItem {
-                    let imageName = (selection == 4) ? "person.fill" : "person"
-                    Icon(imageName: imageName)
-                }
-                .tag(4)
+            NavigationView {
+                ProfileView(viewModel: ProfileViewModel(user: viewModel.currentUser))
+            }
+            .tabItem {
+                let imageName = (selection == 4) ? "person.fill" : "person"
+                Icon(imageName: imageName)
+            }
+            .tag(4)
         }
         .accentColor(.primary)
     }

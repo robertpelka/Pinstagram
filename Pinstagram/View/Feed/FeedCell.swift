@@ -115,6 +115,7 @@ struct FeedCell: View {
                 .padding(.top, 2)
         }
         .padding(.vertical, 14)
+        .navigationTitle("Post")
     }
 }
 

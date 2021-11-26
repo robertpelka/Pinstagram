@@ -17,110 +17,108 @@ struct ProfileView: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack(spacing: 0) {
-                HStack {
-                    WebImage(url: URL(string: viewModel.user.profileImage))
-                        .scaledToFill()
-                        .frame(width: 75, height: 75)
-                        .clipShape(Circle())
-                        .padding(.trailing, 5)
-                    
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(viewModel.user.username)
-                            .font(.system(size: 18, weight: .semibold))
-                        Text(viewModel.user.bio)
-                            .font(.system(size: 16, weight: .regular))
-                    }
-                    
-                    Spacer()
-                }
-                .padding()
+        VStack(spacing: 0) {
+            HStack {
+                WebImage(url: URL(string: viewModel.user.profileImage))
+                    .scaledToFill()
+                    .frame(width: 75, height: 75)
+                    .clipShape(Circle())
+                    .padding(.trailing, 5)
                 
-                HStack {
-                    VStack {
-                        Text("Countries")
-                            .font(.system(size: 18, weight: .semibold))
-                        Text(String(viewModel.user.visitedCountries))
-                            .font(.system(size: 18, weight: .regular))
-                    }
-                    .frame(maxWidth: .infinity)
-                    
-                    VStack {
-                        Text("Followers")
-                            .font(.system(size: 18, weight: .semibold))
-                        Text(String(viewModel.user.followers))
-                            .font(.system(size: 18, weight: .regular))
-                    }
-                    .frame(maxWidth: .infinity)
-                    
-                    VStack {
-                        Text("Following")
-                            .font(.system(size: 18, weight: .semibold))
-                        Text(String(viewModel.user.following))
-                            .font(.system(size: 18, weight: .regular))
-                    }
-                    .frame(maxWidth: .infinity)
-                }
-                .padding(.vertical, 2)
-                
-                if viewModel.user.isCurrentUser {
-                    NavigationLink {
-                        EditProfileView(bio: $viewModel.user.bio, profileImageURL: $viewModel.user.profileImage)
-                            .navigationBarBackButtonHidden(true)
-                    } label: {
-                        SecondaryButton(text: "Edit Profile")
-                    }
-                }
-                else if viewModel.user.isFollowed == true {
-                    Button(action: {
-                        UserService.unfollowUser(withID: viewModel.user.id) {
-                            viewModel.user.isFollowed = false
-                            viewModel.user.followers -= 1
-                        }
-                    }, label: {
-                        SecondaryButton(text: "Unfollow")
-                    })
-                }
-                else {
-                    Button(action: {
-                        UserService.followUser(withID: viewModel.user.id) {
-                            viewModel.user.isFollowed = true
-                            viewModel.user.followers += 1
-                        }
-                    }, label: {
-                        PrimaryButton(text: "Follow", isLoading: .constant(false))
-                    })
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(viewModel.user.username)
+                        .font(.system(size: 18, weight: .semibold))
+                    Text(viewModel.user.bio)
+                        .font(.system(size: 16, weight: .regular))
                 }
                 
-                Map(coordinateRegion: $viewModel.coordinateRegion, annotationItems: viewModel.posts) { post in
-                    MapAnnotation(coordinate: post.coordinate ?? CLLocationCoordinate2D()) {
-                        NavigationLink(
-                            destination: ScrollView { FeedCell(viewModel: FeedCellViewModel(post: post)) },
-                            label: {
-                                ZStack {
-                                    Image("pin")
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(height: 60)
-                                    WebImage(url: URL(string: post.image))
-                                        .scaledToFill()
-                                        .frame(width: 30, height: 30)
-                                        .clipShape(Circle())
-                                        .padding(.bottom, 20)
-                                }
-                                .padding(.bottom, 60)
-                            })
-                    }
+                Spacer()
+            }
+            .padding()
+            
+            HStack {
+                VStack {
+                    Text("Countries")
+                        .font(.system(size: 18, weight: .semibold))
+                    Text(String(viewModel.user.visitedCountries))
+                        .font(.system(size: 18, weight: .regular))
+                }
+                .frame(maxWidth: .infinity)
+                
+                VStack {
+                    Text("Followers")
+                        .font(.system(size: 18, weight: .semibold))
+                    Text(String(viewModel.user.followers))
+                        .font(.system(size: 18, weight: .regular))
+                }
+                .frame(maxWidth: .infinity)
+                
+                VStack {
+                    Text("Following")
+                        .font(.system(size: 18, weight: .semibold))
+                    Text(String(viewModel.user.following))
+                        .font(.system(size: 18, weight: .regular))
+                }
+                .frame(maxWidth: .infinity)
+            }
+            .padding(.vertical, 2)
+            
+            if viewModel.user.isCurrentUser {
+                NavigationLink {
+                    EditProfileView(bio: $viewModel.user.bio, profileImageURL: $viewModel.user.profileImage)
+                        .navigationBarBackButtonHidden(true)
+                } label: {
+                    SecondaryButton(text: "Edit Profile")
                 }
             }
-            .navigationTitle("Profile")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                if viewModel.user.isCurrentUser {
-                    Button("Logout") {
-                        AuthViewModel.shared.logOut()
+            else if viewModel.user.isFollowed == true {
+                Button(action: {
+                    UserService.unfollowUser(withID: viewModel.user.id) {
+                        viewModel.user.isFollowed = false
+                        viewModel.user.followers -= 1
                     }
+                }, label: {
+                    SecondaryButton(text: "Unfollow")
+                })
+            }
+            else {
+                Button(action: {
+                    UserService.followUser(withID: viewModel.user.id) {
+                        viewModel.user.isFollowed = true
+                        viewModel.user.followers += 1
+                    }
+                }, label: {
+                    PrimaryButton(text: "Follow", isLoading: .constant(false))
+                })
+            }
+            
+            Map(coordinateRegion: $viewModel.coordinateRegion, annotationItems: viewModel.posts) { post in
+                MapAnnotation(coordinate: post.coordinate ?? CLLocationCoordinate2D()) {
+                    NavigationLink(
+                        destination: ScrollView { FeedCell(viewModel: FeedCellViewModel(post: post)) },
+                        label: {
+                            ZStack {
+                                Image("pin")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(height: 60)
+                                WebImage(url: URL(string: post.image))
+                                    .scaledToFill()
+                                    .frame(width: 30, height: 30)
+                                    .clipShape(Circle())
+                                    .padding(.bottom, 20)
+                            }
+                            .padding(.bottom, 60)
+                        })
+                }
+            }
+        }
+        .navigationTitle("Profile")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            if viewModel.user.isCurrentUser {
+                Button("Logout") {
+                    AuthViewModel.shared.logOut()
                 }
             }
         }
