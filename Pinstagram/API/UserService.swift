@@ -32,6 +32,7 @@ struct UserService {
                             print("DEBUG: Error incrementing following number of current user: \(error.localizedDescription)")
                             return
                         }
+                        NotificationsViewModel.uploadNotification(forUserID: followedUserID, type: .follow, postID: nil)
                         completion()
                     }
                 }

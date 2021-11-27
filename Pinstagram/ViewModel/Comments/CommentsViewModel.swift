@@ -9,11 +9,11 @@ import Foundation
 import Firebase
     
 class CommentsViewModel: ObservableObject {
-    var postID: String
+    var post: Post
     @Published var comments = [Comment]()
     
-    init(postID: String) {
-        self.postID = postID
+    init(post: Post) {
+        self.post = post
         fetchComments()
     }
     
@@ -23,18 +23,19 @@ class CommentsViewModel: ObservableObject {
         let comment = Comment(id: commentID, text: text, authorID: currentUserID, timestamp: Timestamp(date: Date()))
         
         do {
-            try K.Collections.posts.document(postID).collection("comments").document(commentID).setData(from: comment)
+            try K.Collections.posts.document(post.id).collection("comments").document(commentID).setData(from: comment)
         }
         catch let error {
             print("DEBUG: Error uploading a comment: \(error.localizedDescription)")
             return
         }
         comments.append(comment)
+        NotificationsViewModel.uploadNotification(forUserID: post.ownerID, type: .comment, postID: post.id)
         completion()
     }
     
     func fetchComments() {
-        K.Collections.posts.document(postID).collection("comments").order(by: "timestamp", descending: false).getDocuments { snapshot, error in
+        K.Collections.posts.document(post.id).collection("comments").order(by: "timestamp", descending: false).getDocuments { snapshot, error in
             if let error = error {
                 print("DEBUG: Error getting comments snapshot: \(error.localizedDescription)")
                 return

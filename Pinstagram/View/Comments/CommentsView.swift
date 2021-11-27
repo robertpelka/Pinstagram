@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct CommentsView: View {
     @State var commentText: String = ""
@@ -82,7 +83,7 @@ struct CommentsView: View {
 
 struct CommentsView_Previews: PreviewProvider {
     static var previews: some View {
-        CommentsView(viewModel: CommentsViewModel.init(postID: ""))
+        CommentsView(viewModel: CommentsViewModel.init(post: Post(id: "", image: "", description: "", ownerID: "", timestamp: Timestamp(), longitude: 0, latitude: 0, city: "", country: "", flag: "")))
     }
 }
 

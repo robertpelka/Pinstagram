@@ -8,14 +8,22 @@
 import SwiftUI
 
 struct NotificationsView: View {
+    @ObservedObject var viewModel = NotificationsViewModel()
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 LazyVStack {
-                    ForEach(1..<10) { _ in
-                        NotificationCell(type: .like)
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 5)
+                    if viewModel.notifications.isEmpty {
+                        Text("No notifications yet.")
+                            .padding(.top, 25)
+                    }
+                    else {
+                        ForEach(viewModel.notifications) { notification in
+                            NotificationCell(viewModel: NotificationCellViewModel(notification: notification))
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 5)
+                        }
                     }
                 }
             }

@@ -6,42 +6,32 @@
 //
 
 import SwiftUI
-
-enum NotificationType {
-    case like
-    case comment
-    case follow
-}
+import Firebase
 
 struct NotificationCell: View {
-    var type: NotificationType
-    var notificationText: String {
-        switch type {
-        case .like:
-            return " liked one of your posts. "
-        case .comment:
-            return " commented on one of your posts. "
-        case .follow:
-            return " started following you. "
-        }
-    }
+    @ObservedObject var viewModel: NotificationCellViewModel
     
     var body: some View {
         HStack {
-            Image("profileImage")
-                .resizable()
-                .scaledToFill()
-                .clipShape(Circle())
-                .frame(width: 52, height: 52)
+            if let user = viewModel.notification.user {
+                NavigationLink {
+                    ProfileView(viewModel: ProfileViewModel(user: user))
+                } label: {
+                    WebImage(url: URL(string: viewModel.notification.user?.profileImage ?? ""))
+                        .scaledToFill()
+                        .clipShape(Circle())
+                        .frame(width: 52, height: 52)
+                }
+            }
             
             Group {
-                Text("Andrew")
+                Text(viewModel.notification.user?.username ?? "")
                     .font(.system(size: 16, weight: .semibold))
                     +
-                    Text(notificationText)
+                Text(viewModel.notificationText)
                     .font(.system(size: 16, weight: .regular))
                     +
-                    Text("2d ago")
+                Text("\(viewModel.timestampString) ago")
                     .font(.system(size: 14, weight: .light))
                     .foregroundColor(.secondary)
             }
@@ -49,22 +39,49 @@ struct NotificationCell: View {
             
             Spacer()
             
-            if type == .follow {
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                    Text("Follow")
-                        .font(.system(size: 18, weight: .semibold))
-                        .foregroundColor(.white)
-                        .frame(width: 99, height: 38)
-                        .background(K.Colors.primary)
-                        .cornerRadius(5)
-                })
+            if viewModel.notification.type == .follow, let user = viewModel.notification.user {
+                if user.isFollowed == true {
+                    Button(action: {
+                        UserService.unfollowUser(withID: user.id) {
+                            viewModel.notification.user?.isFollowed = false
+                        }
+                    }, label: {
+                        Text("Unfollow")
+                            .font(.system(size: 18, weight: .semibold))
+                            .foregroundColor(.primary)
+                            .frame(width: 99, height: 38)
+                            .border(K.Colors.primary, width: 2)
+                            .cornerRadius(5)
+                    })
+                }
+                else {
+                    Button(action: {
+                        UserService.followUser(withID: user.id) {
+                            viewModel.notification.user?.isFollowed = true
+                        }
+                    }, label: {
+                        Text("Follow")
+                            .font(.system(size: 18, weight: .semibold))
+                            .foregroundColor(.white)
+                            .frame(width: 99, height: 38)
+                            .background(K.Colors.primary)
+                            .cornerRadius(5)
+                    })
+                }
             }
             else {
-                Image("postImage")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 52, height: 52)
-                    .clipped()
+                if let post = viewModel.notification.post {
+                    NavigationLink {
+                        ScrollView {
+                            FeedCell(viewModel: FeedCellViewModel(post: post))
+                        }
+                    } label: {
+                        WebImage(url: URL(string: post.image))
+                            .scaledToFill()
+                            .frame(width: 52, height: 52)
+                            .clipped()
+                    }
+                }
             }
         }
     }
@@ -72,7 +89,7 @@ struct NotificationCell: View {
 
 struct NotificationCell_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationCell(type: NotificationType.like)
+        NotificationCell(viewModel: NotificationCellViewModel(notification: Notification(id: "", type: .like, userID: "", postID: "", timestamp: Timestamp())))
     }
 }
 

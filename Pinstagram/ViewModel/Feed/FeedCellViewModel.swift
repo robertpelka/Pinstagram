@@ -60,6 +60,7 @@ class FeedCellViewModel: ObservableObject {
                     return
                 }
                 self.post.numberOfLikes += 1
+                NotificationsViewModel.uploadNotification(forUserID: self.post.ownerID, type: .like, postID: self.post.id)
             }
         }
     }

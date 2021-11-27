@@ -79,7 +79,7 @@ struct FeedCell: View {
                 }
                 
                 NavigationLink {
-                    CommentsView(viewModel: CommentsViewModel(postID: viewModel.post.id))
+                    CommentsView(viewModel: CommentsViewModel(post: viewModel.post))
                 } label: {
                     Image(systemName: "bubble.right")
                         .font(.system(size: 26, weight: .light))
@@ -115,7 +115,6 @@ struct FeedCell: View {
                 .padding(.top, 2)
         }
         .padding(.vertical, 14)
-        .navigationTitle("Post")
     }
 }
 
